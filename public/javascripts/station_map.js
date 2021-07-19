@@ -8,21 +8,8 @@ $(document).ready(() => {
     }).addTo(mymap);
 
 
-/*    let event = {
-        "id": 274409,
-        "datetime": "2021-07-19 16:44:53 +02:00",
-        "name": "19 juli 16:40, Trafikolycka, Eskilstuna",
-        "summary": "Trafikolycka mellan lastbil och traktor.",
-        "url": "/aktuellt/handelser/2021/juli/19/19-juli-1640-trafikolycka-eskilstuna/",
-        "type": "Trafikolycka",
-        "location": {
-            "name": "Eskilstuna",
-            "gps": "59.371249,16.509805"
-        }
-    };*/
 
-
-/*    let stations =
+    let stations =
     [
         {
             "id": 1233,
@@ -68,39 +55,31 @@ $(document).ready(() => {
                 }
             ]
         }
-    ]*/
+    ]
 
-    let stations =
-        [
-            {
-                "id": 1233,
-                "name": "Alingsås",
-                "Url": "https://polisen.se/kontakt/polisstationer/vastra-gotaland/alingsas/",
-                "location": {
-                    "name": "N Strömgatan 8, Alingsås",
-                    "gps": "57.930105,12.529608"
-                },
-                "services": [
-                    {
-                        "name": "Anmälan"
-                    },
-                    {
-                        "name": "Cyklar"
-                    },
-                    {
-                        "name": "Hittegods"
-                    },
-                    {
-                        "name": "Pass/nationellt id-kort"
-                    },
-                    {
-                        "name": "Vapen"
-                    }
-                ]
-            }
-        ]
+/*    stations.forEach((station, idx) => {
+        console.log(station);
 
-    coords = `${stations[0].location.gps}`.split(",");
+        coords = `${stations[idx].location.gps}`.split(",");
+
+        let services = "<ul>";
+        stations[idx].services.forEach(function (service, i) {
+            services += '<li>'+ service.name + '</li>';
+        });
+        services += "</ul>";
+
+        let marker = L.marker([coords[0], coords[1]]).addTo(mymap).bindPopup(
+            `Polisstation: ${stations[idx].name}` + "<br>" +
+            `Adress: ${stations[idx].location.name}` + "<br>" +
+            `GPS: ${stations[idx].location.gps}` + "<br>" +
+            "Tjänster: " + services  +
+            "Öppettider: <a href=https://polisen.se/api/policestations/" + `${stations[idx].id}`+ " target='_blank'>Öppettider</a>" + "<br>" +
+            "Läs mer: <a href=" + `${stations[idx].Url}`+ " target='_blank'>Polisen - kontakt</a>"
+        );
+    });*/
+
+
+/*    coords = `${stations[0].location.gps}`.split(",");
 
     let services = "<ul>";
     stations[0].services.forEach(function (service, i) {
@@ -115,31 +94,59 @@ $(document).ready(() => {
         "Tjänster: " + services  +
         "Öppettider: <a href=https://polisen.se/api/policestations/" + `${stations[0].id}`+ " target='_blank'>Öppettider</a>" + "<br>" +
         "Läs mer: <a href=" + `${stations[0].Url}`+ " target='_blank'>Polisen - kontakt</a>"
-    );
+    );*/
 
-    /*endpoint = "https://polisen.se/api/policestations";
+/*    endpoint = "/police-stations/data";
     $.getJSON(endpoint, {})
         .done((stations) => {
 
-            const id = stations[0];
-            var returnedLatitude = null;
-            var returnedLongitude = null;*/
+            console.log(stations);
 
-            /*
-                        var returnedLatitude = null;
-                        var returnedLongitude = null;
-                        var approvedTime = new Date(forecast.approvedTime).toISOString().replace(/[a-zA-Z]/g, ' ').substr(0, 16);
-                        var referenceTime = new Date(forecast.referenceTime).toISOString().replace(/[a-zA-Z]/g, ' ').substr(0, 16);
-                        console.log(forecast['timeSeries'][0]['parameters'][10]['values'][0])
-                        var currentTemp = forecast['timeSeries'][0]['parameters'][10]['values'][0]*/
+        });*/
 
 /*
-            $('#weather').text("Test: " + id);
+    endpoint = "/police-stations/data";
+    $.getJSON(endpoint, {})
+      .done((stations) => {
+          console.log(stations);
+
+      })
+      .fail((xhr) => {
+          alert('Problem contacting server');
+          console.log(xhr);
+      });
+*/
+
+    endpoint = "https://polisen.se/api/policestations";
+    $.getJSON(endpoint, {})
+        .done((stations) => {
+
+            stations.forEach((station, idx) => {
+                console.log(station);
+
+                coords = `${stations[idx].location.gps}`.split(",");
+
+                let services = "<ul>";
+                stations[idx].services.forEach(function (service, i) {
+                    services += '<li>'+ service.name + '</li>';
+                });
+                services += "</ul>";
+
+                let marker = L.marker([coords[0], coords[1]]).addTo(mymap).bindPopup(
+                    `Polisstation: ${stations[idx].name}` + "<br>" +
+                    `Adress: ${stations[idx].location.name}` + "<br>" +
+                    `GPS: ${stations[idx].location.gps}` + "<br>" +
+                    "Tjänster: " + services  +
+                    "Öppettider: <a href=https://polisen.se/api/policestations/" + `${stations[idx].id}`+ " target='_blank'>Öppettider</a>" + "<br>" +
+                    "Läs mer: <a href=" + `${stations[idx].Url}`+ " target='_blank'>Polisen - kontakt</a>"
+                );
+            });
+
         })
         .fail((xhr) => {
             alert('Problem contacting server');
             console.log(xhr);
         });
-*/
+
 
 });
