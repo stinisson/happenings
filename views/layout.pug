@@ -6,6 +6,19 @@ html
     link(rel='stylesheet', href='https://unpkg.com/leaflet@1.7.1/dist/leaflet.css',
       integrity='sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==',
       crossorigin="")
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+
     block head
   body
-    block content
+
+  block navBar
+    #topNav
+        a(class="unclickable") Nyheter och händelser
+        a(href="#about") Om
+        a(href="/police-stations") Polisstationer
+        a(href="#statistics") Statistik
+        a(href="#summaryWeek") Veckosammanfattning
+        a(href="#summaryDay") Dygnssammanfattning
+        a(href="javascript:void(0)" class="icon" onclick="myFunction()")
+          i(class="fa fa-bars")
+  block content

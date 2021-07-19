@@ -1,13 +1,39 @@
 body
-  padding: 50px
-  margin: 50px
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+  overflow: hidden
 
 a
   color: #00B7FF
+
 
 html, body, #map
   height: 100%
   width: 100%
 
+#topNav
+  background-color: #282626
+  overflow: hidden
 
+#topNav a
+  float: right
+  display: block
+  color: #f2f2f2
+  text-align: center
+  padding: 14px 16px
+  text-decoration: none
+  font-size: 17px
+
+#topNav a:hover
+  background-color: #ddd
+  color: #000000
+
+#topNav a.active
+  background-color: #04AA6D
+  color: white
+
+#topNav .icon
+  display: none
+
+#topNav a.unclickable
+  float: left
+  pointer-events: none

@@ -25,8 +25,47 @@ $(document).ready(() => {
 */
 
 
-    var marker = L.marker([57.72, 12.00]).addTo(mymap).bindPopup('Pupperino is on the move')
-    ;
+
+
+
+
+/*
+    let marker = L.marker([57.72, 12.00]).addTo(mymap).bindPopup(
+        "Id", event['id'], "<br>",
+        "Date:", event.datetime, "<br>",
+        "Name:", event.name, "<br>",
+        "Summary:", event.summary);
+*/
+
+    const hej = "123";
+
+
+    let event = {
+            "id": 274409,
+            "datetime": "2021-07-19 16:44:53 +02:00",
+            "name": "19 juli 16:40, Trafikolycka, Eskilstuna",
+            "summary": "Trafikolycka mellan lastbil och traktor.",
+            "url": "/aktuellt/handelser/2021/juli/19/19-juli-1640-trafikolycka-eskilstuna/",
+            "type": "Trafikolycka",
+            "location": {
+                "name": "Eskilstuna",
+                "gps": "59.371249,16.509805"
+            }
+        };
+
+    coords = `${event.location.gps}`.split(",");
+
+    let marker2 = L.marker([coords[0], coords[1]]).addTo(mymap).bindPopup(
+        `${event.type}` + "<br>" +
+        `${event.name}` + "<br>" +
+        `Sammanfattning: ${event.summary}` + "<br>" +
+        `Plats: ${event.location.name}` + "<br>" +
+        `Id: ${event.id}` + "<br>" +
+        `Datum: ${event.datetime}` + "<br>" +
+        `Koordinater: ${event.location.gps}` + "<br>" +
+        "Läs mer: <a href=https://www.polisen.se" + `${event.url}`+ ">Polisen - aktuellt</a>"
+    );
+
 
 
     $.getJSON('https://icanhazdadjoke.com/', {})
