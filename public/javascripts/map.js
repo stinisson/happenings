@@ -1,9 +1,9 @@
 
 $(document).ready(() => {
 
-    var mymap = L.map('map').setView([57.71, 11.97], 12);
+    var mymap = L.map('map').setView([62.56, 15.16], 5);
 
-    var greenIcon = L.icon({
+/*    var greenIcon = L.icon({
         iconUrl: 'images/pup.png',
         //shadowUrl: 'images/smol-dog.jpg',
 
@@ -12,15 +12,22 @@ $(document).ready(() => {
         iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
         shadowAnchor: [4, 62],  // the same for the shadow
         popupAnchor:  [20, -90] // point from which the popup should open relative to the iconAnchor
-    });
+    });*/
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mymap);
 
+/*
     L.marker([57.71, 11.97], {icon: greenIcon}).addTo(mymap)
         .bindPopup('Pupperino is on the move')
         .openPopup();
+*/
+
+
+    var marker = L.marker([57.72, 12.00]).addTo(mymap).bindPopup('Pupperino is on the move')
+    ;
+
 
     $.getJSON('https://icanhazdadjoke.com/', {})
         .done((data) => {
