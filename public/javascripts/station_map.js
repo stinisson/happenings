@@ -9,7 +9,7 @@ $(document).ready(() => {
 
 
 
-    let stations =
+/*    let stations =
     [
         {
             "id": 1233,
@@ -55,7 +55,7 @@ $(document).ready(() => {
                 }
             ]
         }
-    ]
+    ]*/
 
 /*    stations.forEach((station, idx) => {
         console.log(station);
@@ -122,23 +122,43 @@ $(document).ready(() => {
         .done((stations) => {
 
             stations.forEach((station, idx) => {
-                console.log(station);
 
-                coords = `${stations[idx].location.gps}`.split(",");
+                coords = `${station.location.gps}`.split(",");
 
-                let services = "<ul>";
-                stations[idx].services.forEach(function (service, i) {
-                    services += '<li>'+ service.name + '</li>';
+                let listedServices = "<ul>";
+                station.services.forEach(function (service, i) {
+                    listedServices += '<li>'+ service.name + '</li>';
                 });
-                services += "</ul>";
+                listedServices += "</ul>";
+
+                endpointOpeningHours = "https://polisen.se/api/policestations/" + `${station.id}`;
+                $.getJSON(endpointOpeningHours, {})
+                    .done((openingHours) => {
+
+                        //console.log(openingHours.services);
+
+                        openingHours.services.forEach((openingHour, idx) => {
+
+                            //console.log(openingHour.openingHours);
+
+/*                            console.log("Service: ");
+                            console.log(openingHour.name);
+
+                            console.log("Opening hours today: ")
+                            console.log(openingHour.openingHours[0]);
+                            console.log(openingHour.openingHours[0].from);
+                            console.log(openingHour.openingHours[0].to);*/
+
+                        })
+
+                    })
 
                 let marker = L.marker([coords[0], coords[1]]).addTo(mymap).bindPopup(
-                    `Polisstation: ${stations[idx].name}` + "<br>" +
-                    `Adress: ${stations[idx].location.name}` + "<br>" +
-                    `GPS: ${stations[idx].location.gps}` + "<br>" +
-                    "Tjänster: " + services  +
-                    "Öppettider: <a href=https://polisen.se/api/policestations/" + `${stations[idx].id}`+ " target='_blank'>Öppettider</a>" + "<br>" +
-                    "Läs mer: <a href=" + `${stations[idx].Url}`+ " target='_blank'>Polisen - kontakt</a>"
+                    `Polisstation: ${station.name}` + "<br>" +
+                    `Adress: ${station.location.name}` + "<br>" +
+                    `GPS: ${station.location.gps}` + "<br>" +
+                    "Tjänster: " + listedServices  +
+                    "Öppettider och tjänster: <a href=" + `${station.Url}`+ " target='_blank'>Polisen - kontakt</a>"
                 );
             });
 
