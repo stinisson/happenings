@@ -117,7 +117,7 @@ $(document).ready(() => {
       });
 */
 
-    endpoint = "https://polisen.se/api/policestations";
+ /*   endpoint = "https://polisen.se/api/policestations";
     $.getJSON(endpoint, {})
         .done((stations) => {
 
@@ -141,13 +141,13 @@ $(document).ready(() => {
 
                             //console.log(openingHour.openingHours);
 
-/*                            console.log("Service: ");
+/!*                            console.log("Service: ");
                             console.log(openingHour.name);
 
                             console.log("Opening hours today: ")
                             console.log(openingHour.openingHours[0]);
                             console.log(openingHour.openingHours[0].from);
-                            console.log(openingHour.openingHours[0].to);*/
+                            console.log(openingHour.openingHours[0].to);*!/
 
                         })
 
@@ -166,7 +166,7 @@ $(document).ready(() => {
         .fail((xhr) => {
             alert('Problem contacting server');
             console.log(xhr);
-        });
+        });*/
 
 
 });

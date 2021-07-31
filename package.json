@@ -9,9 +9,11 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "got": "^11.8.2",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "node-sass-middleware": "0.11.0",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "request": "^2.88.2"
   }
 }
