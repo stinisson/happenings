@@ -1,21 +1,32 @@
 const express = require('express');
 const router = express.Router();
 const got = require('got');
+const mongodb = require('mongodb');
+
+// Setup MongoDB
+const MongoClient = mongodb.MongoClient;
+const dbURL = "mongodb://localhost";
+
+function saveStations() {
+    MongoClient.connect(dbURL), {useUnifiedTopology: true}, (err, client) => {
+        if (err) throw err;
+        else {
+            console.log("hej");
+        }
+    }
+}
 
 
 async function cacheStations() {
     // https://polisen.se/api/policestations
     //const stations = await got('https://jsonplaceholder.typicode.com/todosz/1').json();
-    const stations = await got('https://jsonplaceholder.typicode.com/todos/1z', {responseType: 'json'}).then(response => {
+    const stations = await got('https://jsonplaceholder.typicode.com/todos/1', {responseType: 'json'}).then(response => {
         return response.body;
     }).catch(error => {
         console.log(error);
     });
     return stations;
 }
-
-// func savestations
-// 
 
 router.get('/', async function(req, res) {
     res.render('stations', { title: 'Nyheter och händelser' });
