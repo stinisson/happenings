@@ -7,11 +7,14 @@ const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 const dbURL = "mongodb://localhost";
 
+
 function saveStations() {
     MongoClient.connect(dbURL), {useUnifiedTopology: true}, (err, client) => {
         if (err) throw err;
         else {
             console.log("hej");
+            const db = client.db('happenings');
+            const stations = db.collection('policeStations');
         }
     }
 }
