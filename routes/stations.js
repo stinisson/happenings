@@ -14,35 +14,6 @@ const MongoClient = mongodb.MongoClient;
 const dbURL = "mongodb://localhost";
 
 
-/*function saveStations() {
-
-    MongoClient.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
-        if (err) throw err;
-        else {
-            const db = client.db('happenings');
-
-/!*            db.collection("policeStations").insertMany(stat, function(err, res) {
-                if (err) throw err;
-                console.log("1 document inserted");
-                client.close();
-            })*!/
-
-            db.collection("policeStations").deleteMany({});
-
-/!*            db.collection("policeStations").deleteMany({}).then(r =>
-                db.collection("policeStations").insertMany(response, function(err, res) {
-                    if (err) throw err;
-                    console.log("1 document inserted");
-                    client.close();
-                })
-            );*!/
-
-        }
-    })
-
-}*/
-
-
 function saveStations() {
     got('https://polisen.se/api/policestations', {responseType: 'json'}).then(response => {
 
@@ -58,7 +29,6 @@ function saveStations() {
                         client.close();
                     })
                 );
-
             }
         })
     }).catch(error => {
@@ -68,7 +38,7 @@ function saveStations() {
 
 
 router.get('/', function(req, res) {
-    res.render('stations', { title: 'Nyheter och händelser' });
+    res.render('stations', { title: 'Stations' });
 });
 
 router.get('/data', function(req, res, next) {
