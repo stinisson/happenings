@@ -11,16 +11,6 @@ $(document).ready(() => {
         .done((events) => {
             events.forEach((event, idx) => {
                 let coords = `${event.location.gps}`.split(",");
-/*                let marker = L.marker([coords[0], coords[1]]).addTo(mymap).bindPopup(
-                    "<b>" + `${event.type}` + "</b>" + "<br>" +
-                    `${event.name}` + "<br>" +
-                    `Sammanfattning: ${event.summary}` + "<br>" +
-                    `Plats: ${event.location.name}` + "<br>" +
-                    `Id: ${event.id}` + "<br>" +
-                    `Datum: ${event.datetime}` + "<br>" +
-                    `Koordinater: ${event.location.gps}` + "<br>" +
-                    "Läs mer: <a href=https://www.polisen.se" + `${event.url}` + " target='_blank' "+  ">Polisen - aktuellt</a>"
-                );*/
                 let marker = L.marker([coords[0], coords[1]]).addTo(mymap).bindPopup(
                     "<b>" + `${event.type}` + "</b>" + "<br>" +
                     `${event.name}` + "<br><br>" +
