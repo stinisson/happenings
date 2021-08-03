@@ -15,7 +15,7 @@ $(document).ready(() => {
 
                 let coords = `${stations[idx].location.gps}`.split(",");
 
-                let services = "<ul>";
+                let services = "<ul class='stationService'>";
                 stations[idx].services.forEach(function (service, i) {
                     services += '<li>'+ service.name + '</li>';
                 });
@@ -26,8 +26,7 @@ $(document).ready(() => {
                     `Adress: ${stations[idx].location.name}` + "<br>" +
                     `GPS: ${stations[idx].location.gps}` + "<br>" +
                     "Tjänster: " + services  +
-                    "Öppettider: <a href=https://polisen.se/api/policestations/" + `${stations[idx].id}`+ " target='_blank'>Öppettider</a>" + "<br>" +
-                    "Läs mer: <a href=" + `${stations[idx].Url}`+ " target='_blank'>Polisen - kontakt</a>"
+                    "Öppettider och tjänster: <a href=" + `${station.Url}`+ " target='_blank'>Polisen - kontakt</a>"
                 );
             });
         });
