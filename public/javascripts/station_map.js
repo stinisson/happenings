@@ -7,14 +7,32 @@ $(document).ready(() => {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mymap);
 
+    var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
+        denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
+        aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
+        golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
+
+    var cities = L.layerGroup([littleton, denver, aurora, golden]);
+
+    var overlayMaps = {
+        'Anmälan': cities,
+        'Pass ': cities,
+        'Tillstånd ': cities,
+        'Hittegods ': cities,
+        'Vapen ': cities,
+        'Delgivning ': cities,
+        'Cyklar  ': cities,
+        'Provisoriskt pass': cities,
+        'Beslag ': cities
+    };
+
+    L.control.layers(null, overlayMaps, {collapsed:false, sortLayers:true}).addTo(mymap);
+
     const endpoint = "/police-stations/data";
     $.getJSON(endpoint, {})
         .done((stations) => {
             stations.forEach((station, idx) => {
-                console.log(station);
-
                 let coords = `${stations[idx].location.gps}`.split(",");
-
                 let services = "<ul class='stationService'>";
                 stations[idx].services.forEach(function (service, i) {
                     services += '<li>'+ service.name + '</li>';

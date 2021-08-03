@@ -15,9 +15,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/summary', function(req, res, next) {
 
-    console.log("IDAG IDAG IDAG");
     const datetime = new Date();
-    console.log(datetime.toISOString().substr(0, 10));
     const currentDate = datetime.toISOString().substr(0, 10);
 
     MongoClient.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
