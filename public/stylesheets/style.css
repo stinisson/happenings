@@ -1,6 +1,7 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  overflow: hidden; }
+  overflow: hidden;
+  margin: 0; }
 
 a {
   color: #00B7FF; }
@@ -33,8 +34,11 @@ html, body, #map {
 #topNav .icon {
   display: none; }
 
-#topNav a.unclickable {
-  float: left;
-  pointer-events: none; }
+#topNav a.navbarLeft {
+  float: left; }
+
+ul.stationService {
+  margin-top: 0;
+  margin-bottom: 0; }
 
 /*# sourceMappingURL=style.css.map */
