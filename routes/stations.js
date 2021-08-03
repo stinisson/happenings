@@ -17,7 +17,6 @@ const dbURL = "mongodb://localhost";
 function saveStations() {
     got('https://polisen.se/api/policestations', {responseType: 'json'}).then(response => {
 
-        console.log(response.body);
         MongoClient.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
             if (err) throw err;
             else {
