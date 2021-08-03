@@ -36,7 +36,6 @@ function saveStations() {
     });
 }
 
-
 router.get('/', function(req, res) {
     res.render('stations', { title: 'Stations' });
 });

@@ -29,48 +29,12 @@ $(document).ready(() => {
                     "Öppettider och tjänster: <a href=" + `${station.Url}`+ " target='_blank'>Polisen - kontakt</a>"
                 );
             });
+        })
+        .fail((xhr) => {
+            alert('Problem contacting server');
+            console.log(xhr);
         });
 
-
-
-
-/*    coords = `${stations[0].location.gps}`.split(",");
-
-    let services = "<ul>";
-    stations[0].services.forEach(function (service, i) {
-        services += '<li>'+ service.name + '</li>';
-    });
-    services += "</ul>";
-
-    let marker = L.marker([coords[0], coords[1]]).addTo(mymap).bindPopup(
-        `Polisstation: ${stations[0].name}` + "<br>" +
-        `Adress: ${stations[0].location.name}` + "<br>" +
-        `GPS: ${stations[0].location.gps}` + "<br>" +
-        "Tjänster: " + services  +
-        "Öppettider: <a href=https://polisen.se/api/policestations/" + `${stations[0].id}`+ " target='_blank'>Öppettider</a>" + "<br>" +
-        "Läs mer: <a href=" + `${stations[0].Url}`+ " target='_blank'>Polisen - kontakt</a>"
-    );*/
-
-/*    endpoint = "/police-stations/data";
-    $.getJSON(endpoint, {})
-        .done((stations) => {
-
-            console.log(stations);
-
-        });*/
-
-/*
-    endpoint = "/police-stations/data";
-    $.getJSON(endpoint, {})
-      .done((stations) => {
-          console.log(stations);
-
-      })
-      .fail((xhr) => {
-          alert('Problem contacting server');
-          console.log(xhr);
-      });
-*/
 
  /*   endpoint = "https://polisen.se/api/policestations";
     $.getJSON(endpoint, {})
