@@ -6,23 +6,59 @@ const CronJob = require('cron').CronJob;
 
 // Load stations once per day
 // cronTime, onTick, onComplete, start, timezone, context, runOnInit
-const job = new CronJob('0 0 0 * * *', saveStations, null, true, null, null, true);
+const job = new CronJob('0 0 0 * * *', saveStations, null, null, null, null, true);
+job.start();
 
 // Setup MongoDB
 const MongoClient = mongodb.MongoClient;
 const dbURL = "mongodb://localhost";
 
-function saveStations() {
-    got('https://polisen.se/api/policestations', {responseType: 'json'}).then(response => {
-        MongoClient.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
-            if (err) throw err;
-            else {
-                const db = client.db('happenings');
+
+/*function saveStations() {
+
+    MongoClient.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
+        if (err) throw err;
+        else {
+            const db = client.db('happenings');
+
+/!*            db.collection("policeStations").insertMany(stat, function(err, res) {
+                if (err) throw err;
+                console.log("1 document inserted");
+                client.close();
+            })*!/
+
+            db.collection("policeStations").deleteMany({});
+
+/!*            db.collection("policeStations").deleteMany({}).then(r =>
                 db.collection("policeStations").insertMany(response, function(err, res) {
                     if (err) throw err;
                     console.log("1 document inserted");
                     client.close();
-                });
+                })
+            );*!/
+
+        }
+    })
+
+}*/
+
+
+function saveStations() {
+    got('https://polisen.se/api/policestations', {responseType: 'json'}).then(response => {
+
+        console.log(response.body);
+        MongoClient.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
+            if (err) throw err;
+            else {
+                const db = client.db('happenings');
+                db.collection("policeStations").deleteMany({}).then(r =>
+                    db.collection("policeStations").insertMany(response.body, function(err, res) {
+                        if (err) throw err;
+                        console.log("1 document inserted");
+                        client.close();
+                    })
+                );
+
             }
         })
     }).catch(error => {

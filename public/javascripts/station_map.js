@@ -13,7 +13,7 @@ $(document).ready(() => {
             stations.forEach((station, idx) => {
                 console.log(station);
 
-                coords = `${stations[idx].location.gps}`.split(",");
+                let coords = `${stations[idx].location.gps}`.split(",");
 
                 let services = "<ul>";
                 stations[idx].services.forEach(function (service, i) {
