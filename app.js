@@ -10,7 +10,6 @@ const stationRouter = require('./routes/stations');
 const dailyRouter = require('./routes/daily');
 const aboutRouter = require('./routes/about');
 
-
 const app = express();
 
 // view engine setup
@@ -28,6 +27,14 @@ app.use(sassMiddleware({
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/bootstrap',
+    express.static(path.join(__dirname,
+        'node_modules/bootstrap/dist/css')));
+app.use('/bootstrap',
+    express.static(path.join(__dirname,
+        'node_modules/bootstrap/dist/js')));
+
 
 app.use('/', indexRouter);
 app.use('/police-stations', stationRouter);

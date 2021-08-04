@@ -1,17 +1,15 @@
 extends layout
 
 block head
-    script(src="https://code.jquery.com/jquery-3.6.0.min.js",
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=",
-        crossorigin="anonymous")
     script(src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js",
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==",
         crossorigin="")
+    link(rel="stylesheet", href="/bootstrap/bootstrap.min.css")
 
     block navBar
         #topNav
             a(href="/" class="navbarLeft") Nyheter och händelser
-            a(class="active" href="/about") Om
+            a(class="active about" href="/about") Om
             a(href="/police-stations") Polisstationer
             a(href="#statistics") Statistik
             a(href="/hotspot") Hotspot
@@ -20,10 +18,53 @@ block head
                 i(class="fa fa-bars")
 
 
-block content
-    #about-bgd
+block scripts
     script(src="/javascripts/about_page.js")
 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+block content
+
+    #about-bgd
+
+        main.flex-shrink-0
+
+            .container.container-about
+                h1.pt-5 Happenings
+
+                p.lead Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+
+                #accordionExample.accordion
+                    .card
+                        #headingOne.card-header
+                            h2.mb-0
+                                button.btn.btn-link(type='button', data-toggle='collapse', data-target='#collapseOne', aria-expanded='true', aria-controls='collapseOne')
+                                    | Varifrån kommer datan?
+                        |
+                        #collapseOne.collapse.show(aria-labelledby='headingOne', data-parent='#accordionExample')
+                            .card-body
+                                | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat noa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
+                    |
+                    .card
+                        #headingTwo.card-header
+                            h2.mb-0
+                                button.btn.btn-link.collapsed(type='button', data-toggle='collapse', data-target='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
+                                    | Har du förslag på förbättringar eller vill hjälpa till?
+                        |
+                        #collapseTwo.collapse(aria-labelledby='headingTwo', data-parent='#accordionExample')
+                            .card-body
+                                | Anim pariatur cliche , non  3 wolf moh et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciu
+                    |
+                    .card
+                        #headingThree.card-header
+                            h2.mb-0
+                                button.btn.btn-link.collapsed(type='button', data-toggle='collapse', data-target='#collapseThree', aria-expanded='false', aria-controls='collapseThree')
+                                    | Säg hej!
+                        |
+                        #collapseThree.collapse(aria-labelledby='headingThree', data-parent='#accordionExample')
+                            .card-body
+                                | Anim pariatur cliche reprehenderit, enim eiusmod high life accus
 
 
 

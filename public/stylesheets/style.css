@@ -36,6 +36,9 @@ html, body {
   background-color: #1862A8;
   color: white; }
 
+#topNav a.active.about {
+  background-color: #EEAECA; }
+
 #topNav .icon {
   display: none; }
 
@@ -124,7 +127,22 @@ ul.stationService {
 #about-bgd {
   width: 100vw;
   height: calc(100vh - 48px);
-  background: #004e92;
-  background: linear-gradient(180deg, #004e92 9%, #010428 96%); }
+  background: #eeaeca;
+  background: linear-gradient(20deg, #eeaeca 0%, #94bbe9 100%); }
+
+.container.container-about {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px; }
+
+h1 {
+  color: #ffffff; }
+
+.btn.btn-link {
+  color: #212529;
+  text-decoration-line: none; }
+
+.btn.btn-link:hover {
+  color: #EBAFCB; }
 
 /*# sourceMappingURL=style.css.map */
