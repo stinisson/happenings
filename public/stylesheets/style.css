@@ -33,7 +33,7 @@ html, body {
   color: #000000; }
 
 #topNav a.active {
-  background-color: #86a8e7;
+  background-color: #1862A8;
   color: white; }
 
 #topNav .icon {
@@ -124,7 +124,7 @@ ul.stationService {
 #about-bgd {
   width: 100vw;
   height: calc(100vh - 48px);
-  background: #7f7fd5;
-  background: linear-gradient(45deg, #7f7fd5 9%, #86a8e7 51%, #91eae4 96%); }
+  background: #004e92;
+  background: linear-gradient(180deg, #004e92 9%, #010428 96%); }
 
 /*# sourceMappingURL=style.css.map */
