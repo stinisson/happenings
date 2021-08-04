@@ -8,6 +8,19 @@ block head
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==",
         crossorigin="")
 
+    script(src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js", crossorigin="anonymous")
+
+    block navBar
+        #topNav
+            a(href="/" class="navbarLeft") Nyheter och händelser
+            a(href="/about") Om
+            a(class="active" href="/police-stations") Polisstationer
+            a(href="#statistics") Statistik
+            a(href="/hotspot") Hotspot
+            a(href="/daily-summary") Senaste dygnet
+            a(href="javascript:void(0)" class="icon" onclick="myFunction()")
+                i(class="fa fa-bars")
+
 block content
     #map
     script(src="/javascripts/station_map.js")
