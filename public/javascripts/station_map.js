@@ -26,7 +26,47 @@ $(document).ready(() => {
         'Beslag ': cities
     };
 
+    var overlayMapsOpen = {
+        'Är öppen': cities
+    };
+
     L.control.layers(null, overlayMaps, {collapsed:false, sortLayers:true}).addTo(mymap);
+    $(".leaflet-control-layers-overlays").parent().prepend('<div class="control-title"><b>Tjänster</b></div>');
+
+    L.control.layers(null, overlayMapsOpen, {collapsed:false, sortLayers:true}).addTo(mymap);
+    $(".leaflet-control-layers-overlays").parent().prepend('<div class="control-title"><b>Öppettider</b></div>');
+
+
+    L.easyButton({
+        states:[
+            {
+                stateName: 'unloaded',
+                icon: 'fa-location-arrow',
+                title: 'load image',
+                onClick: function(control){
+                    control.state("loading");
+                    control._map.on('locationfound', function(e){
+                        this.setView(e.latlng, 17);
+                        control.state('loaded');
+                    });
+                    control._map.on('locationerror', function(){
+                        control.state('error');
+                    });
+                    control._map.locate()
+                }
+            }, {
+                stateName: 'loading',
+                icon: 'fa-spinner fa-spin'
+            }, {
+                stateName: 'loaded',
+                icon: 'fa-thumbs-up'
+            }, {
+                stateName: 'error',
+                icon: 'fa-frown-o',
+                title: 'location not found'
+            }
+        ]
+    }).addTo(mymap);
 
     const endpoint = "/police-stations/data";
     $.getJSON(endpoint, {})
