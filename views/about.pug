@@ -1,0 +1,30 @@
+extends layout
+
+block head
+    script(src="https://code.jquery.com/jquery-3.6.0.min.js",
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=",
+        crossorigin="anonymous")
+    script(src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js",
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==",
+        crossorigin="")
+
+    block navBar
+        #topNav
+            a(href="/" class="navbarLeft") Nyheter och händelser
+            a(class="active" href="/about") Om
+            a(href="/police-stations") Polisstationer
+            a(href="#statistics") Statistik
+            a(href="/hotspot") Hotspot
+            a(href="/daily-summary") Senaste dygnet
+            a(href="javascript:void(0)" class="icon" onclick="myFunction()")
+                i(class="fa fa-bars")
+
+
+block content
+    #about-bgd
+    script(src="/javascripts/about_page.js")
+
+
+
+
+
