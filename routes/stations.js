@@ -6,8 +6,8 @@ const CronJob = require('cron').CronJob;
 
 // Load stations once per day
 // cronTime, onTick, onComplete, start, timezone, context, runOnInit
-const job = new CronJob('0 0 0 * * *', saveStations, null, null, null, null, true);
-job.start();
+/*const job = new CronJob('0 0 0 * * *', saveStations, null, null, null, null, true);
+job.start();*/
 
 // Setup MongoDB
 const MongoClient = mongodb.MongoClient;

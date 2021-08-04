@@ -7,11 +7,9 @@ const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 const dbURL = "mongodb://localhost";
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-
   res.render('index', { title: 'Nyheter och händelser' });
-  saveEvents();
+  //saveEvents();
 });
 
 function saveEvents() {
