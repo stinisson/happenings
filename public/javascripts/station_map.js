@@ -1,7 +1,7 @@
 
 $(document).ready(() => {
 
-    var mymap = L.map('map').setView([62.56, 15.16], 5);
+    var mymap = L.map('map', {minZoom: 5}).setView([62.56, 15.16], 5);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -26,15 +26,18 @@ $(document).ready(() => {
         'Beslag ': cities
     };
 
-    var overlayMapsOpen = {
-        'Är öppen': cities
+    var baseMaps = {
+        'Öppna stationer': cities,
+        'Alla stationer': cities
     };
 
-    L.control.layers(null, overlayMaps, {collapsed:false, sortLayers:true}).addTo(mymap);
-    $(".leaflet-control-layers-overlays").parent().prepend('<div class="control-title"><b>Tjänster</b></div>');
+    const services = L.control.layers(baseMaps, overlayMaps, {collapsed:false, sortLayers:true}).addTo(mymap);
+    $(".leaflet-control-layers-overlays").prepend('<div class="control-title"><b>Tjänster</b></div>');
+    $(".leaflet-control-layers-base").parent().prepend('<div class="control-title"><b>Polisstationer</b></div>');
 
-    L.control.layers(null, overlayMapsOpen, {collapsed:false, sortLayers:true}).addTo(mymap);
-    $(".leaflet-control-layers-overlays").parent().prepend('<div class="control-title"><b>Öppettider</b></div>');
+
+
+
 
 
     L.easyButton({
