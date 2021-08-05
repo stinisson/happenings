@@ -5,7 +5,7 @@ block scripts
     script(src="/javascripts/criminal_statistics.js")
 
     //Chart.js
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js")
 
     block navBar
         #topNav
@@ -18,23 +18,41 @@ block scripts
             a(href="javascript:void(0)" class="icon" onclick="myFunction()")
                 i(class="fa fa-bars")
 
-    block content
-
+block content
+    main.flex-shrink-0
         #about-bgd
 
-            main.flex-shrink-0
+            .container.container-statistics
+                h1.pt-5 Kriminalstatistik
 
-                .container.container-about
-                    h1.pt-5 Kriminalstatistik
+                p.lead Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
 
-                    p.lead Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+                .card.text-center
+                    .card-header
+                        ul.nav.nav-tabs.card-header-tabs
+                            li.nav-item
+                                a.nav-link.active(aria-current='true', href='#') Skjutningar
+                            |
+                            li.nav-item
+                                a.nav-link(href='#') Sprängningar
+                            |
+                            li.nav-item
+                                a.nav-link(href='#', tabindex='-1') Övrigt
+                    |
+                    .card-body
+                        h2.pt-4 Skjutningar
 
-                    button.btn.btn-primary(type='button') Primary
-                    button.btn.btn-secondary(type='button') Secondary
-                    button.btn.btn-success(type='button') Success
-                    button.btn.btn-danger(type='button') Danger
-                    button.btn.btn-warning(type='button') Warning
-                    button.btn.btn-info(type='button') Info
-                    button.btn.btn-light(type='button') Light
-                    button.btn.btn-dark(type='button') Dark
-                    button.btn.btn-link(type='button') Link
+                            h3.pt-3 2021
+                            h5 I år:
+                                strong  180
+                                |  st
+                            canvas#shootings_2021
+
+                            h3.pt-5 2020
+                            h5 Totalt: <b>366</b> st
+                            canvas#shootings_2020
+
+                            h3.pt-5 2019
+                            h5 Totalt: <b>334</b> st
+                            canvas.pb-5#shootings_2019
+

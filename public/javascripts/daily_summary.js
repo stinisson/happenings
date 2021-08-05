@@ -11,6 +11,7 @@ $(document).ready(() => {
     const mymap = L.map('map', {
         center: [62.56, 15.16],
         zoom: 5,
+        minZoom: 5,
         layers: [grayscale, streets]
     });
 

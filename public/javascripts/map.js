@@ -1,6 +1,6 @@
 $(document).ready(() => {
 
-    var mymap = L.map('map').setView([62.56, 15.16], 5);
+    var mymap = L.map('map', {minZoom: 5}).setView([62.56, 15.16], 5);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
