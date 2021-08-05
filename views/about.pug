@@ -1,71 +1,83 @@
 extends layout
 
-block head
-    script(src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js",
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==",
-        crossorigin="")
-    link(rel="stylesheet", href="/bootstrap/bootstrap.min.css")
+block scripts
+    // About page script
+    script(src="/javascripts/about_page.js")
 
     block navBar
         #topNav
             a(href="/" class="navbarLeft") Nyheter och händelser
             a(class="active about" href="/about") Om
+            a(href="/statistics") Kriminalstatistik
             a(href="/police-stations") Polisstationer
-            a(href="#statistics") Statistik
             a(href="/hotspot") Hotspot
             a(href="/daily-summary") Senaste dygnet
             a(href="javascript:void(0)" class="icon" onclick="myFunction()")
                 i(class="fa fa-bars")
 
+    block content
+        #about-bgd
+            main.flex-shrink-0
+                .container.container-about
+                    h1.pt-5 Nyheter och händelser i Sverige
 
-block scripts
-    script(src="/javascripts/about_page.js")
+                    p.lead Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-
-block content
-
-    #about-bgd
-
-        main.flex-shrink-0
-
-            .container.container-about
-                h1.pt-5 Happenings
-
-                p.lead Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
-
-                #accordionExample.accordion
-                    .card
-                        #headingOne.card-header
-                            h2.mb-0
-                                button.btn.btn-link(type='button', data-toggle='collapse', data-target='#collapseOne', aria-expanded='true', aria-controls='collapseOne')
+                    #accordionPanelsStayOpenExample.accordion
+                        .accordion-item
+                            h2#panelsStayOpen-headingOne.accordion-header
+                                button.accordion-button(type='button', data-bs-toggle='collapse',
+                                    data-bs-target='#panelsStayOpen-collapseOne', aria-expanded='true',
+                                    aria-controls='panelsStayOpen-collapseOne')
                                     | Varifrån kommer datan?
+                            |
+                            #panelsStayOpen-collapseOne.accordion-collapse.collapse.show(aria-labelledby='panelsStayOpen-headingOne')
+                                .accordion-body
+                                    strong This is the first item&apos;s accordion body.
+                                    |  It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the
+                                    code .accordion-body
+                                    | , though the transition does limit overflow.
                         |
-                        #collapseOne.collapse.show(aria-labelledby='headingOne', data-parent='#accordionExample')
-                            .card-body
-                                | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat noa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-                    |
-                    .card
-                        #headingTwo.card-header
-                            h2.mb-0
-                                button.btn.btn-link.collapsed(type='button', data-toggle='collapse', data-target='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
-                                    | Har du förslag på förbättringar eller vill hjälpa till?
+                        .accordion-item
+                            h2#panelsStayOpen-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button', data-bs-toggle='collapse', data-bs-target='#panelsStayOpen-collapseTwo', aria-expanded='false', aria-controls='panelsStayOpen-collapseTwo')
+                                    | Har du förslag på förbättringar?
+                            |
+                            #panelsStayOpen-collapseTwo.accordion-collapse.collapse(aria-labelledby='panelsStayOpen-headingTwo')
+                                .accordion-body
+                                    strong This is the second item&apos;s accordion body.
+                                    |  It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the
+                                    code .accordion-body
+                                    | , though the transition does limit overflow.
                         |
-                        #collapseTwo.collapse(aria-labelledby='headingTwo', data-parent='#accordionExample')
-                            .card-body
-                                | Anim pariatur cliche , non  3 wolf moh et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciu
-                    |
-                    .card
-                        #headingThree.card-header
-                            h2.mb-0
-                                button.btn.btn-link.collapsed(type='button', data-toggle='collapse', data-target='#collapseThree', aria-expanded='false', aria-controls='collapseThree')
-                                    | Säg hej!
-                        |
-                        #collapseThree.collapse(aria-labelledby='headingThree', data-parent='#accordionExample')
-                            .card-body
-                                | Anim pariatur cliche reprehenderit, enim eiusmod high life accus
+                        .accordion-item
+                            h2#panelsStayOpen-headingThree.accordion-header
+                                button.accordion-button.collapsed(type='button', data-bs-toggle='collapse', data-bs-target='#panelsStayOpen-collapseThree', aria-expanded='false', aria-controls='panelsStayOpen-collapseThree')
+                                    | Vad innebär "hotspot"?
+                            |
+                            #panelsStayOpen-collapseThree.accordion-collapse.collapse(aria-labelledby='panelsStayOpen-headingThree')
+                                .accordion-body
+                                    strong Hotspot heatmap
+                                    |  It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the
+                                    code .accordion-body
+                                    | , though the transition does limit overflow.
 
-
+            .social-container
+                ul.social-icons
+                    li
+                        a(href='#')
+                            i.fa.fa-facebook
+                    |
+                    li
+                        a(href='#')
+                            i.fa.fa-twitter
+                    |
+                    li
+                        a(href='#')
+                            i.fa.fa-linkedin
+                    |
+                    li
+                        a(href='#')
+                            i.fa.fa-envelope
 
 

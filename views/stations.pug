@@ -1,26 +1,37 @@
 extends layout
 
-block head
-    script(src="https://code.jquery.com/jquery-3.6.0.min.js",
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=",
-        crossorigin="anonymous")
+block stylesheets
+
+    // Leaflet CSS
+    link(rel='stylesheet', href='https://unpkg.com/leaflet@1.7.1/dist/leaflet.css',
+        integrity='sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==',
+        crossorigin="")
+
+block scripts
+    // Station map page script
+    script(src="/javascripts/station_map.js")
+
+    // Leaflet JS
     script(src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js",
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==",
         crossorigin="")
 
+    // Leaflet easy-button
     script(src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js", crossorigin="anonymous")
+
+
+
 
     block navBar
         #topNav
             a(href="/" class="navbarLeft") Nyheter och händelser
             a(href="/about") Om
+            a(href="/statistics") Kriminalstatistik
             a(class="active" href="/police-stations") Polisstationer
-            a(href="#statistics") Statistik
             a(href="/hotspot") Hotspot
             a(href="/daily-summary") Senaste dygnet
             a(href="javascript:void(0)" class="icon" onclick="myFunction()")
                 i(class="fa fa-bars")
 
-block content
-    #map
-    script(src="/javascripts/station_map.js")
+    block content
+        #map
