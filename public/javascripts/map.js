@@ -138,8 +138,8 @@ $(document).ready(() => {
         ]
     }).addTo(mymap);
 
-    var goldIcon = new L.Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
+    var icon = new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
         iconSize: [25, 41],
         iconAnchor: [12, 41],
@@ -152,7 +152,7 @@ $(document).ready(() => {
         .done((events) => {
             events.forEach((event, idx) => {
                 let coords = `${event.location.gps}`.split(",");
-                let marker = L.marker([coords[0], coords[1]], {icon: goldIcon}).addTo(mymap).bindPopup(
+                let marker = L.marker([coords[0], coords[1]], {icon: icon}).addTo(mymap).bindPopup(
                     "<b>" + `${event.type}` + "</b>" + "<br>" +
                     `${event.name}` + "<br><br>" +
                     `${event.summary}` + "<br> <br>" +
