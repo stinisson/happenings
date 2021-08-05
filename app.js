@@ -9,6 +9,7 @@ const indexRouter = require('./routes/index');
 const stationRouter = require('./routes/stations');
 const dailyRouter = require('./routes/daily');
 const aboutRouter = require('./routes/about');
+const statisticsRouter = require('./routes/statistics');
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.use('/', indexRouter);
 app.use('/police-stations', stationRouter);
 app.use('/daily-summary', dailyRouter);
 app.use('/about', aboutRouter);
+app.use('/statistics', statisticsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

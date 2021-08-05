@@ -1,0 +1,40 @@
+extends layout
+
+block scripts
+    // Criminal statistics page script
+    script(src="/javascripts/criminal_statistics.js")
+
+    //Chart.js
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.js")
+
+    block navBar
+        #topNav
+            a(href="/" class="navbarLeft") Nyheter och händelser
+            a(href="/about") Om
+            a(class="active statistics" href="/statistics") Kriminalstatistik
+            a(href="/police-stations") Polisstationer
+            a(href="/hotspot") Hotspot
+            a(href="/daily-summary") Senaste dygnet
+            a(href="javascript:void(0)" class="icon" onclick="myFunction()")
+                i(class="fa fa-bars")
+
+    block content
+
+        #about-bgd
+
+            main.flex-shrink-0
+
+                .container.container-about
+                    h1.pt-5 Kriminalstatistik
+
+                    p.lead Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+
+                    button.btn.btn-primary(type='button') Primary
+                    button.btn.btn-secondary(type='button') Secondary
+                    button.btn.btn-success(type='button') Success
+                    button.btn.btn-danger(type='button') Danger
+                    button.btn.btn-warning(type='button') Warning
+                    button.btn.btn-info(type='button') Info
+                    button.btn.btn-light(type='button') Light
+                    button.btn.btn-dark(type='button') Dark
+                    button.btn.btn-link(type='button') Link
