@@ -112,7 +112,7 @@ $(document).ready(() => {
             {
                 stateName: 'unloaded',
                 icon: 'fa-location-arrow',
-                title: 'load image',
+                title: 'Visa din plats',
                 onClick: function(control){
                     control.state("loading");
                     control._map.on('locationfound', function(e){
