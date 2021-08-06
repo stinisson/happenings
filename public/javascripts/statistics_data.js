@@ -1,16 +1,16 @@
 import {chartColors, chartColorsTransparent, labels, options, options_explosions} from "./utils.js";
 
-export const data_skjutningar_2021 = [22, 14, 21, 21, 34, 34, 34, 0, 0, 0, 0, 0];
-export const data_avlidna_2021 = [2, 3, 1, 3, 8, 4, 4, 0, 0, 0, 0, 0];
-export const data_skadade_2021 = [8, 7, 2, 8, 4, 11, 13, 0, 0, 0, 0, 0];
+const data_skjutningar_2021 = [22, 14, 21, 21, 34, 34, 34, 0, 0, 0, 0, 0];
+const data_avlidna_2021 = [2, 3, 1, 3, 8, 4, 4, 0, 0, 0, 0, 0];
+const data_skadade_2021 = [8, 7, 2, 8, 4, 11, 13, 0, 0, 0, 0, 0];
 
-export const data_skjutningar_2020 = [33, 21, 36, 23, 29, 33, 33, 42, 39, 34, 22, 21];
-export const data_avlidna_2020 = [4, 3, 5, 3, 4, 3, 3, 5, 5, 3, 5, 4];
-export const data_skadade_2020 = [14, 4, 13, 6, 14, 9, 10, 12, 13, 12, 3, 7];
+const data_skjutningar_2020 = [33, 21, 36, 23, 29, 33, 33, 42, 39, 34, 22, 21];
+const data_avlidna_2020 = [4, 3, 5, 3, 4, 3, 3, 5, 5, 3, 5, 4];
+const data_skadade_2020 = [14, 4, 13, 6, 14, 9, 10, 12, 13, 12, 3, 7];
 
-export const data_skjutningar_2019 = [17, 23, 17, 24, 29, 45, 27, 32, 35, 18, 30, 37];
-export const data_avlidna_2019 = [3, 5, 1, 6, 1, 4, 2, 4, 1, 4, 1, 10];
-export const data_skadade_2019 = [5, 4, 7, 8, 12, 17, 11, 11, 12, 4, 11, 18];
+const data_skjutningar_2019 = [17, 23, 17, 24, 29, 45, 27, 32, 35, 18, 30, 37];
+const data_avlidna_2019 = [3, 5, 1, 6, 1, 4, 2, 4, 1, 4, 1, 10];
+const data_skadade_2019 = [5, 4, 7, 8, 12, 17, 11, 11, 12, 4, 11, 18];
 
 
 export const data_detonationer_2021 = [9, 5, 9, 8, 11, 6, 3, 0, 0, 0, 0, 0];
@@ -108,7 +108,7 @@ const data_shootings_2019 = {
 };
 
 // Explosions
-const data_explosions_2021 = {
+export const data_explosions_2021 = {
     labels: labels,
     datasets: [
         {
@@ -135,7 +135,7 @@ const data_explosions_2021 = {
     ]
 };
 
-const data_explosions_2020 = {
+export const data_explosions_2020 = {
     labels: labels,
     datasets: [
         {
@@ -162,7 +162,7 @@ const data_explosions_2020 = {
     ]
 };
 
-const data_explosions_2019 = {
+export const data_explosions_2019 = {
     labels: labels,
     datasets: [
         {
@@ -211,19 +211,19 @@ export const config_shootings_2019 = {
 // Explosions
 export const config_explosions_2021 = {
     type: 'bar',
-    data: data_explosions_2021,
+    //data: data_explosions_2021,
     options: options_explosions
 };
 
 export const config_explosions_2020 = {
     type: 'bar',
-    data: data_explosions_2020,
+    //data: data_explosions_2020,
     options: options_explosions
 };
 
 export const config_explosions_2019 = {
     type: 'bar',
-    data: data_explosions_2019,
+    //data: data_explosions_2019,
     options: options_explosions
 };
 

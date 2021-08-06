@@ -33,7 +33,8 @@ export const labels = [
     'December'
 ];
 
-export const options= {
+
+export const options = {
     plugins: {
         legend: {
             display: true,
@@ -98,7 +99,7 @@ export const options_explosions= {
     indexAxis: 'y',
     elements: {
         bar: {
-            borderWidth: 2,
+            borderWidth: 1,
         }
     },
     scales: {
@@ -139,3 +140,95 @@ export const options_explosions= {
         }
     }
 }
+
+
+/*
+export const eventsLayer = {
+    'Alkohollagen': cities,
+    'Anträffad död': cities,
+    'Anträffat gods': cities,
+    'Arbetsplatsolycka': cities,
+    'Bedrägeri': cities,
+    'Bombhot': cities,
+    'Brand': cities,
+    'Brand automatlarm': cities,
+    'Bråk': cities,
+    'Detonation': cities,
+    'Djur skadat/omhändertaget': cities,
+    'Ekobrott': cities,
+    'Farligt föremål, misstänkt': cities,
+    'Fjällräddning': cities,
+    'Fylleri/LOB': cities,
+    'Förfalskningsbrott': cities,
+    'Försvunnen person': cities,
+    'Gränskontroll': cities,
+    'Häleri': cities,
+    'Inbrott': cities,
+    'Inbrott, försök': cities,
+    'Knivlagen': cities,
+    'Kontroll person/fordon': cities,
+    'Lagen om hundar och katter': cities,
+    'Larm inbrott': cities,
+    'Larm överfall': cities,
+    'Miljöbrott': cities,
+    'Missbruk av urkund': cities,
+    'Misshandel': cities,
+    'Misshandel, grov': cities,
+    'Mord/dråp': cities,
+    'Mord/dråp, försök': cities,
+    'Motorfordon, anträffat stulet': cities,
+    'Motorfordon, stöld': cities,
+    'Narkotikabrott': cities,
+    'Naturkatastrof': cities,
+    'Ofog barn/ungdom': cities,
+    'Ofredande/förargelse': cities,
+    'Olaga frihetsberövande': cities,
+    'Olaga hot': cities,
+    'Olaga intrång/hemfridsbrott': cities,
+    'Olovlig körning': cities,
+    'Ordningslagen': cities,
+    'Polisinsats/kommendering': cities,
+    'Rattfylleri': cities,
+    'Räddningsinsats': cities,
+    'Rån': cities,
+    'Rån väpnat': cities,
+    'Rån övrigt': cities,
+    'Rån, försök': cities,
+    'Sammanfattning dag': cities,
+    'Sammanfattning dygn': cities,
+    'Sammanfattning eftermiddag': cities,
+    'Sammanfattning förmiddag': cities,
+    'Sammanfattning helg': cities,
+    'Sammanfattning kväll': cities,
+    'Sammanfattning kväll och natt': cities,
+    'Sammanfattning natt': cities,
+    'Sammanfattning vecka': cities,
+    'Sedlighetsbrott': cities,
+    'Sjukdom/olycksfall': cities,
+    'Sjölagen': cities,
+    'Skadegörelse': cities,
+    'Skottlossning': cities,
+    'Skottlossning, misstänkt': cities,
+    'Spridning smittsamma kemikalier': cities,
+    'Stöld': cities,
+    'Stöld, försök': cities,
+    'Stöld, ringa': cities,
+    'Stöld/inbrott': cities,
+    'Tillfälligt obemannat': cities,
+    'Trafikbrott': cities,
+    'Trafikhinder': cities,
+    'Trafikkontroll': cities,
+    'Trafikolycka': cities,
+    'Trafikolycka, personskada': cities,
+    'Trafikolycka, singel': cities,
+    'Trafikolycka, smitning från': cities,
+    'Trafikolycka, vilt': cities,
+    'Uppdatering': cities,
+    'Utlänningslagen': cities,
+    'Vapenlagen': cities,
+    'Varningslarm/haveri': cities,
+    'Våld/hot mot tjänsteman': cities,
+    'Våldtäkt': cities,
+    'Våldtäkt, försök': cities,
+    'Vållande till kroppsskada': cities
+};*/
