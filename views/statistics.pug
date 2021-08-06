@@ -2,7 +2,7 @@ extends layout
 
 block scripts
     // Criminal statistics page script
-    script(src="/javascripts/criminal_statistics.js")
+    script(src="/javascripts/criminal_statistics.js", type="module")
 
     //Chart.js
     script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js")
@@ -29,30 +29,58 @@ block content
 
                 .card.text-center
                     .card-header
-                        ul.nav.nav-tabs.card-header-tabs
-                            li.nav-item
-                                a.nav-link.active(aria-current='true', href='#') Skjutningar
-                            |
-                            li.nav-item
-                                a.nav-link(href='#') Sprängningar
-                            |
-                            li.nav-item
-                                a.nav-link(href='#', tabindex='-1') Övrigt
-                    |
+                        nav
+                            #nav-tab.nav.nav-tabs(role='tablist')
+                                button#nav-home-tab.nav-link.active(data-bs-toggle='tab', data-bs-target='#nav-home', type='button', role='tab', aria-controls='nav-home', aria-selected='true') Skjutningar
+                                |
+                                button#nav-profile-tab.nav-link(data-bs-toggle='tab', data-bs-target='#nav-profile', type='button', role='tab', aria-controls='nav-profile', aria-selected='false') Sprängningar
+                                |
+                                button#nav-contact-tab.nav-link(data-bs-toggle='tab', data-bs-target='#nav-contact', type='button', role='tab', aria-controls='nav-contact', aria-selected='false') Övrigt
                     .card-body
-                        h2.pt-4 Skjutningar
+                        #nav-tabContent.tab-content
+                            #nav-home.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='nav-home-tab')
 
-                            h3.pt-3 2021
-                            h5 I år:
-                                strong  180
-                                |  st
-                            canvas#shootings_2021
+                                h3.pt-3 2021
+                                h5 I år:
+                                    strong  180
+                                    |  st skjutningar
+                                canvas#shootings_2021
 
-                            h3.pt-5 2020
-                            h5 Totalt: <b>366</b> st
-                            canvas#shootings_2020
+                                h3.pt-5 2020
+                                h5 Totalt:
+                                    strong  366
+                                    |  st skjutningar
+                                canvas#shootings_2020
 
-                            h3.pt-5 2019
-                            h5 Totalt: <b>334</b> st
-                            canvas.pb-5#shootings_2019
+                                h3.pt-5 2019
+                                h5 Totalt:
+                                    strong  334
+                                    |  st skjutningar
+                                canvas.pb-5#shootings_2019
+
+                            #nav-profile.tab-pane.fade(role='tabpanel', aria-labelledby='nav-profile-tab')
+                                h3.pt-3 2021
+                                h5 I år:
+                                    strong
+                                    |  51 st sprängningar
+                                canvas#explosions_2021
+
+                                h3.pt-5 2020
+                                h5 Totalt:
+                                    strong
+                                    |  107 st sprängningar
+                                canvas#explosions_2020
+
+                                h3.pt-5 2019
+                                h5 Totalt:
+                                    strong
+                                    |  133 st sprängningar
+                                canvas.pb-5#explosions_2019
+
+                            #nav-contact.tab-pane.fade(role='tabpanel', aria-labelledby='nav-contact-tab') Kommer snart
+
+
+
+
+
 
