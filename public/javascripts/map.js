@@ -1,10 +1,56 @@
+//import {eventsLayer} from "./utils.js";
+
 $(document).ready(() => {
 
+    // Leaflet map
     var mymap = L.map('map', {minZoom: 5}).setView([62.56, 15.16], 5);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mymap);
+
+    // Locate me-button
+    L.easyButton({
+        states:[
+            {
+                stateName: 'unloaded',
+                icon: 'fa-location-arrow',
+                title: 'Visa din plats',
+                onClick: function(control){
+                    control.state("loading");
+                    control._map.on('locationfound', function(e){
+                        L.marker(e.latlng).addTo(mymap).bindPopup("<b>Du befinner dig här!</b><br>").openPopup();
+                        this.setView(e.latlng, 13);
+                        control.state('loaded');
+                    });
+                    control._map.on('locationerror', function(){
+                        control.state('error');
+                    });
+                    control._map.locate()
+                }
+            }, {
+                stateName: 'loading',
+                icon: 'fa-spinner fa-spin'
+            }, {
+                stateName: 'loaded',
+                icon: 'fa-thumbs-up'
+            }, {
+                stateName: 'error',
+                icon: 'fa-frown-o',
+                title: 'location not found'
+            }
+        ]
+    }).addTo(mymap);
+
+    // Events
+    var icon = new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
 
     var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
         denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
@@ -13,7 +59,7 @@ $(document).ready(() => {
 
     var cities = L.layerGroup([littleton, denver, aurora, golden]);
 
-    const overlayMaps = {
+    const eventsLayer = {
         'Alkohollagen': cities,
         'Anträffad död': cities,
         'Anträffat gods': cities,
@@ -103,49 +149,8 @@ $(document).ready(() => {
         'Vållande till kroppsskada': cities
     };
 
-    L.control.layers(null, overlayMaps, {collapsed:false, sortLayers:true}).addTo(mymap);
-
+    L.control.layers(null, eventsLayer, {collapsed:false, sortLayers:true}).addTo(mymap);
     $(".leaflet-control-layers-overlays").parent().prepend('<div class="control-title"><b>Händelser</b></div>');
-
-    L.easyButton({
-        states:[
-            {
-                stateName: 'unloaded',
-                icon: 'fa-location-arrow',
-                title: 'Visa din plats',
-                onClick: function(control){
-                    control.state("loading");
-                    control._map.on('locationfound', function(e){
-                        this.setView(e.latlng, 17);
-                        control.state('loaded');
-                    });
-                    control._map.on('locationerror', function(){
-                        control.state('error');
-                    });
-                    control._map.locate()
-                }
-            }, {
-                stateName: 'loading',
-                icon: 'fa-spinner fa-spin'
-            }, {
-                stateName: 'loaded',
-                icon: 'fa-thumbs-up'
-            }, {
-                stateName: 'error',
-                icon: 'fa-frown-o',
-                title: 'location not found'
-            }
-        ]
-    }).addTo(mymap);
-
-    var icon = new L.Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-    });
 
     const endpoint = "/data";
     $.getJSON(endpoint, {})
