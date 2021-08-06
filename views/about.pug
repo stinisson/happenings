@@ -15,69 +15,69 @@ block scripts
             a(href="javascript:void(0)" class="icon" onclick="myFunction()")
                 i(class="fa fa-bars")
 
-    block content
-        #about-bgd
-            main.flex-shrink-0
-                .container.container-about
-                    h1.pt-5 Nyheter och händelser i Sverige
+block content
+    #background-about
+        main.flex-shrink-0
+            .container.container-about
+                h1.pt-5 Nyheter och händelser i Sverige
 
-                    p.lead Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+                p.lead Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
 
-                    #accordionPanelsStayOpenExample.accordion
-                        .accordion-item
-                            h2#panelsStayOpen-headingOne.accordion-header
-                                button.accordion-button(type='button', data-bs-toggle='collapse',
-                                    data-bs-target='#panelsStayOpen-collapseOne', aria-expanded='true',
-                                    aria-controls='panelsStayOpen-collapseOne')
-                                    | Varifrån kommer datan?
-                            |
-                            #panelsStayOpen-collapseOne.accordion-collapse.collapse.show(aria-labelledby='panelsStayOpen-headingOne')
-                                .accordion-body
-                                    strong This is the first item&apos;s accordion body.
-                                    |  It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the
-                                    code .accordion-body
-                                    | , though the transition does limit overflow.
+                #accordionPanelsStayOpenExample.accordion
+                    .accordion-item
+                        h2#panelsStayOpen-headingOne.accordion-header
+                            button.accordion-button(type='button', data-bs-toggle='collapse',
+                                data-bs-target='#panelsStayOpen-collapseOne', aria-expanded='true',
+                                aria-controls='panelsStayOpen-collapseOne')
+                                | Varifrån kommer datan?
                         |
-                        .accordion-item
-                            h2#panelsStayOpen-headingTwo.accordion-header
-                                button.accordion-button.collapsed(type='button', data-bs-toggle='collapse', data-bs-target='#panelsStayOpen-collapseTwo', aria-expanded='false', aria-controls='panelsStayOpen-collapseTwo')
-                                    | Har du förslag på förbättringar?
-                            |
-                            #panelsStayOpen-collapseTwo.accordion-collapse.collapse(aria-labelledby='panelsStayOpen-headingTwo')
-                                .accordion-body
-                                    strong This is the second item&apos;s accordion body.
-                                    |  It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the
-                                    code .accordion-body
-                                    | , though the transition does limit overflow.
+                        #panelsStayOpen-collapseOne.accordion-collapse.collapse.show(aria-labelledby='panelsStayOpen-headingOne')
+                            .accordion-body
+                                strong This is the first item&apos;s accordion body.
+                                |  It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the
+                                code .accordion-body
+                                | , though the transition does limit overflow.
+                    |
+                    .accordion-item
+                        h2#panelsStayOpen-headingTwo.accordion-header
+                            button.accordion-button.collapsed(type='button', data-bs-toggle='collapse', data-bs-target='#panelsStayOpen-collapseTwo', aria-expanded='false', aria-controls='panelsStayOpen-collapseTwo')
+                                | Har du förslag på förbättringar?
                         |
-                        .accordion-item
-                            h2#panelsStayOpen-headingThree.accordion-header
-                                button.accordion-button.collapsed(type='button', data-bs-toggle='collapse', data-bs-target='#panelsStayOpen-collapseThree', aria-expanded='false', aria-controls='panelsStayOpen-collapseThree')
-                                    | Vad innebär "hotspot"?
-                            |
-                            #panelsStayOpen-collapseThree.accordion-collapse.collapse(aria-labelledby='panelsStayOpen-headingThree')
-                                .accordion-body
-                                    strong Hotspot heatmap.
-                                    |  It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the
-                                    code .accordion-body
-                                    | , though the transition does limit overflow.
+                        #panelsStayOpen-collapseTwo.accordion-collapse.collapse(aria-labelledby='panelsStayOpen-headingTwo')
+                            .accordion-body
+                                strong This is the second item&apos;s accordion body.
+                                |  It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the
+                                code .accordion-body
+                                | , though the transition does limit overflow.
+                    |
+                    .accordion-item
+                        h2#panelsStayOpen-headingThree.accordion-header
+                            button.accordion-button.collapsed(type='button', data-bs-toggle='collapse', data-bs-target='#panelsStayOpen-collapseThree', aria-expanded='false', aria-controls='panelsStayOpen-collapseThree')
+                                | Vad innebär "hotspot"?
+                        |
+                        #panelsStayOpen-collapseThree.accordion-collapse.collapse(aria-labelledby='panelsStayOpen-headingThree')
+                            .accordion-body
+                                strong Hotspot heatmap.
+                                |  It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the
+                                code .accordion-body
+                                | , though the transition does limit overflow.
 
-            .social-container
-                ul.social-icons
-                    li
-                        a(href='#')
-                            i.fa.fa-facebook
-                    |
-                    li
-                        a(href='#')
-                            i.fa.fa-twitter
-                    |
-                    li
-                        a(href='#')
-                            i.fa.fa-linkedin
-                    |
-                    li
-                        a(href='#')
-                            i.fa.fa-envelope
+                .social-container
+                    ul.social-icons
+                        li
+                            a(href='#')
+                                i.fa.fa-facebook
+                        |
+                        li
+                            a(href='#')
+                                i.fa.fa-twitter
+                        |
+                        li
+                            a(href='#')
+                                i.fa.fa-linkedin
+                        |
+                        li
+                            a(href='#')
+                                i.fa.fa-envelope
 
 
