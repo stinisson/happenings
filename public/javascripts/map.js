@@ -3,11 +3,36 @@
 $(document).ready(() => {
 
     // Leaflet map
-    var mymap = L.map('map', {minZoom: 5}).setView([62.56, 15.16], 5);
+    //const mymap = L.map('map', {minZoom: 5}).setView([62.56, 15.16], 5);
+
+    var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
+        denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
+        aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
+        golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
+
+    var cities = L.layerGroup([littleton, denver, aurora, golden]);
+
+
+    const mymap = L.map('map', {
+        center: [62.56, 15.16],
+        zoom: 5,
+        minZoom: 5,
+        layers: [cities]
+    });
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mymap);
+
+    // Locate me icon
+    const locateMeIcon = new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
 
     // Locate me-button
     L.easyButton({
@@ -19,7 +44,7 @@ $(document).ready(() => {
                 onClick: function(control){
                     control.state("loading");
                     control._map.on('locationfound', function(e){
-                        L.marker(e.latlng).addTo(mymap).bindPopup("<b>Du befinner dig här!</b><br>").openPopup();
+                        L.marker(e.latlng, {icon: locateMeIcon}).addTo(control._map).bindPopup("<b>Du är här!</b><br>").openPopup();
                         this.setView(e.latlng, 13);
                         control.state('loaded');
                     });
@@ -52,12 +77,10 @@ $(document).ready(() => {
         shadowSize: [41, 41]
     });
 
-    var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
-        denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
-        aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
-        golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
-
-    var cities = L.layerGroup([littleton, denver, aurora, golden]);
+    const eventsLayer = {
+        'Alkohollagen': cities,
+        'Anträffad död': cities};
+/*
 
     const eventsLayer = {
         'Alkohollagen': cities,
@@ -147,9 +170,23 @@ $(document).ready(() => {
         'Våldtäkt': cities,
         'Våldtäkt, försök': cities,
         'Vållande till kroppsskada': cities
-    };
+    };*/
 
-    L.control.layers(null, eventsLayer, {collapsed:false, sortLayers:true}).addTo(mymap);
+    L.control.layers(null, eventsLayer, {collapsed:false, sortLayers:true,
+
+        onClick: function(event){
+
+            var id = event.currentTarget.layerId;
+            var layer = this._layers[id];
+            console.log(layer);
+            console.log(id)
+
+        },
+
+        },
+
+
+        ).addTo(mymap);
     $(".leaflet-control-layers-overlays").parent().prepend('<div class="control-title"><b>Händelser</b></div>');
 
     const endpoint = "/data";
