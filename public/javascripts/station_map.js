@@ -36,19 +36,26 @@ $(document).ready(() => {
     $(".leaflet-control-layers-base").parent().prepend('<div class="control-title"><b>Polisstationer</b></div>');
 
 
-
-
-
+    // Locate me icon
+    const locateMeIcon = new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
 
     L.easyButton({
         states:[
             {
                 stateName: 'unloaded',
                 icon: 'fa-location-arrow',
-                title: 'load image',
+                title: 'Visa din plats',
                 onClick: function(control){
                     control.state("loading");
                     control._map.on('locationfound', function(e){
+                        L.marker(e.latlng, {icon: locateMeIcon}).addTo(control._map).bindPopup("<b>Du är här!</b><br>").openPopup();
                         this.setView(e.latlng, 17);
                         control.state('loaded');
                     });
