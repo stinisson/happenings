@@ -116,6 +116,13 @@ ul.stationService {
   background: #eeaeca;
   background: linear-gradient(20deg, #eeaeca 0%, #94bbe9 100%); }
 
+#background-404 {
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  background: #eeaeca;
+  background: linear-gradient(20deg, #eeaeca 0%, #94bbe9 100%); }
+
 .container.container-about {
   width: auto;
   max-width: 680px;
@@ -125,6 +132,13 @@ ul.stationService {
   width: auto;
   max-width: 900px;
   padding: 0 15px  55px; }
+
+.container.container-error {
+  height: 600px;
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+  padding-top: 200px; }
 
 .card {
   background-color: rgba(148, 167, 231, 0.4) !important; }
@@ -202,5 +216,10 @@ button.accordion-button:hover {
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       transition: all 265ms ease-in; }
+
+.btn.error-button {
+  color: #ffffff;
+  background-color: rgba(148, 167, 231, 0.6);
+  margin-top: 20px; }
 
 /*# sourceMappingURL=style.css.map */
