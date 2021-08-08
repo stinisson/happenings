@@ -3,10 +3,9 @@ extends layout
 block content
   #background-404
     .container.container-error
-      h1.pt-5.text-center= error.status
-      h2.text-center= message
-      h4.text-center Hoppsan! Det går tyvärr inte hitta sidan du letar efter.
+      //h1.pt-5.text-center= error.status
+      h1.pt-5.text-center= message
+      h4.text-center Det går tyvärr inte att hitta sidan du letar efter.
       .d-flex.justify-content-center
         a.btn.error-button.btn-lg.active(href='/', role='button', aria-pressed='true') Tillbaka till första sidan
-      //pre #{error.stack}
 
