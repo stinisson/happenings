@@ -222,4 +222,7 @@ button.accordion-button:hover {
   background-color: rgba(148, 167, 231, 0.6);
   margin-top: 20px; }
 
+.btn.error-button:hover {
+  color: #607dc2; }
+
 /*# sourceMappingURL=style.css.map */
