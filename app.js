@@ -45,7 +45,7 @@ app.use('/statistics', statisticsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404, "Sidan kunde inte hittas"));
+  next(createError(404, "Hoppsan!"));
 });
 
 // error handler
