@@ -9,7 +9,7 @@ const dbURL = "mongodb://localhost";
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Nyheter och händelser' });
-  //saveEvents();
+  saveEvents();
 });
 
 function saveEvents() {
