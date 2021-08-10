@@ -9,7 +9,7 @@ block stylesheets
 
 block scripts
     // Station map page script
-    script(src="/javascripts/station_map.js")
+    script(src="/javascripts/station_map.js", type="module")
 
     // Leaflet JS
     script(src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js",
@@ -35,3 +35,9 @@ block scripts
 
 block content
     #map
+        .leaflet-top.leaflet-right
+            .leaflet-control-layers.leaflet-control-layers-expanded.leaflet-control
+                section.leaflet-control-layers-list.leaflet-control-layers-scrollbar
+                    .control-title
+                        b hej
+                    p bahds
