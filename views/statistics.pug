@@ -2,7 +2,7 @@ extends layout
 
 block scripts
     // Criminal statistics page script
-    script(src="/javascripts/criminal_statistics.js", type="module")
+    script(src="/javascripts/crime_statistics.js", type="module")
 
     //Chart.js
     script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js")
@@ -14,6 +14,7 @@ block scripts
             a(class="active statistics" href="/statistics") Kriminalstatistik
             a(href="/police-stations") Polisstationer
             a(href="/hotspot") Hotspot
+            a(href="/weekly-summary") Senaste veckan
             a(href="/daily-summary") Senaste dygnet
             a(href="javascript:void(0)" class="icon" onclick="myFunction()")
                 i(class="fa fa-bars")
@@ -25,20 +26,19 @@ block content
             .container.container-statistics
                 h1.pt-5 Kriminalstatistik
 
-                p.lead Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+                p.lead Kriminalstatistik över skjutningar och sprängningar i Sverige.
 
                 .card.text-center
                     .card-header
                         nav
                             #nav-tab.nav.nav-tabs(role='tablist')
-                                button#nav-home-tab.nav-link.active(data-bs-toggle='tab', data-bs-target='#nav-home', type='button', role='tab', aria-controls='nav-home', aria-selected='true') Skjutningar
+                                button#nav-shootings-tab.nav-link.active(data-bs-toggle='tab', data-bs-target='#nav-shootings', type='button', role='tab', aria-controls='nav-shootings', aria-selected='true') Skjutningar
                                 |
-                                button#nav-profile-tab.nav-link(data-bs-toggle='tab', data-bs-target='#nav-profile', type='button', role='tab', aria-controls='nav-profile', aria-selected='false', onclick='setupExplosionData()') Sprängningar
-                                |
-                                button#nav-contact-tab.nav-link(data-bs-toggle='tab', data-bs-target='#nav-contact', type='button', role='tab', aria-controls='nav-contact', aria-selected='false') Övrigt
+                                button#nav-explosions-tab.nav-link(data-bs-toggle='tab', data-bs-target='#nav-explosions', type='button', role='tab', aria-controls='nav-explosions', aria-selected='false', onclick='setupExplosionData()') Sprängningar
+
                     .card-body
                         #nav-tabContent.tab-content
-                            #nav-home.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='nav-home-tab')
+                            #nav-shootings.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='nav-shootings-tab')
 
                                 h3.pt-3 2021
                                 h5 I år:
@@ -58,7 +58,7 @@ block content
                                     |  st skjutningar
                                 canvas.pb-5#shootings_2019
 
-                            #nav-profile.tab-pane.fade(role='tabpanel', aria-labelledby='nav-profile-tab')
+                            #nav-explosions.tab-pane.fade(role='tabpanel', aria-labelledby='nav-explosions-tab')
                                 h3.pt-3 2021
                                 h5 I år:
                                     strong
@@ -76,11 +76,3 @@ block content
                                     strong
                                     |  133 st sprängningar
                                 canvas.pb-5#explosions_2019
-
-                            #nav-contact.tab-pane.fade(role='tabpanel', aria-labelledby='nav-contact-tab') Kommer snart
-
-
-
-
-
-

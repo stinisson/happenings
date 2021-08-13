@@ -8,6 +8,7 @@ const sassMiddleware = require('node-sass-middleware');
 const indexRouter = require('./routes/index');
 const stationRouter = require('./routes/stations');
 const dailyRouter = require('./routes/daily');
+const weeklyRouter = require('./routes/weekly');
 const aboutRouter = require('./routes/about');
 const statisticsRouter = require('./routes/statistics');
 
@@ -40,6 +41,7 @@ app.use('/bootstrap',
 app.use('/', indexRouter);
 app.use('/police-stations', stationRouter);
 app.use('/daily-summary', dailyRouter);
+app.use('/weekly-summary', weeklyRouter);
 app.use('/about', aboutRouter);
 app.use('/statistics', statisticsRouter);
 
