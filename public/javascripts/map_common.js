@@ -28,9 +28,10 @@ const eventIconBlue = new L.Icon({
 
 // Leaflet map
 function createMap(layers) {
+
     const mymap = L.map('map', {
-        center: [62.56, 15.16],
-        zoom: 5,
+        center: [document.navigatePayload.centerLat, document.navigatePayload.centerLng],
+        zoom: document.navigatePayload.zoom,
         minZoom: 5,
         layers: layers
     });
@@ -85,6 +86,7 @@ function createMap(layers) {
     return mymap;
 }
 
+
 export function getEventData(endpoint, iconColour, timeInterval) {
 
     let eventIcon;
@@ -134,6 +136,7 @@ export function getEventData(endpoint, iconColour, timeInterval) {
             });
 
             const mymap = createMap(eventControlLayers);
+            document.mymap = mymap;
 
             L.control.layers(null, eventLayers, {collapsed:false, sortLayers:true}).addTo(mymap);
 

@@ -1,4 +1,4 @@
-import {getEventData} from "./common.js";
+import {getEventData} from "./map_common.js";
 
 // Leaflet map
 function createMap() {
