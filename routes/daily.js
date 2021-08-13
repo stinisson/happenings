@@ -29,8 +29,7 @@ router.get('/summary', function(req, res, next) {
             events.find({datetime: {$gte: currentDate}}).project({}).toArray( (err, docs) => {
                 if (err) throw err;
 
-                else { console.log(docs);
-                    res.send(docs); }
+                else { res.send(docs); }
                 client.close();
             });
         }

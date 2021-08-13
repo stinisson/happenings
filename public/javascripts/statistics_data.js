@@ -316,25 +316,21 @@ export const config_shootings_2017 = {
 // Explosions
 export const config_explosions_2021 = {
     type: 'bar',
-    //data: data_explosions_2021,
     options: options_explosions
 };
 
 export const config_explosions_2020 = {
     type: 'bar',
-    //data: data_explosions_2020,
     options: options_explosions
 };
 
 export const config_explosions_2019 = {
     type: 'bar',
-    //data: data_explosions_2019,
     options: options_explosions
 };
 
 export const config_explosions_2018 = {
     type: 'bar',
-    //data: data_explosions_2018,
     options: options_explosions
 };
 
