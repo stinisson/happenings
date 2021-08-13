@@ -12,6 +12,7 @@
     "express": "~4.16.1",
     "got": "^11.8.2",
     "http-errors": "~1.6.3",
+    "jquery.redirect": "^1.1.4",
     "leaflet-easybutton": "^2.4.0",
     "moment": "^2.29.1",
     "mongodb": "^4.0.1",
