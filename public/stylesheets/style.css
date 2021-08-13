@@ -225,4 +225,7 @@ button.accordion-button:hover {
 .btn.error-button:hover {
   color: #607dc2; }
 
+.custom-popup .leaflet-popup-content-wrapper {
+  font-size: 15px; }
+
 /*# sourceMappingURL=style.css.map */
