@@ -7,17 +7,17 @@ block scripts
     //Chart.js
     script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js")
 
-    block navBar
-        #topNav
-            a(class="navbarLeft" href="#" onclick="document.navigate('/');") Nyheter och händelser
-            a(href="#" onclick="document.navigate('/about');") Om
-            a(class="active statistics" href="#" onclick="document.navigate('/statistics');") Kriminalstatistik
-            a(href="#" onclick="document.navigate('/police-stations');") Polisstationer
-            a(href="#" onclick="document.navigate('/hotspot');") Hotspot
-            a(href="#" onclick="document.navigate('/weekly-summary');") Senaste veckan
-            a(href="#" onclick="document.navigate('/daily-summary');") Senaste dygnet
-            a(href="javascript:void(0)" class="icon" onclick="myFunction()")
-                i(class="fa fa-bars")
+    #Topnav.topnav
+        a(class="navbarLeft" href="#" onclick="document.navigate('/');") Nyheter och händelser
+        a(href="#" onclick="document.navigate('/daily-summary');") Senaste dygnet
+        a(href="#" onclick="document.navigate('/weekly-summary');") Senaste veckan
+        a(href="#" onclick="document.navigate('/police-stations');") Polisstationer
+        a(class="active statistics" href="#" onclick="document.navigate('/statistics');") Kriminalstatistik
+        a(href="#" onclick="document.navigate('/about');") Om
+        //a(href="#" onclick="document.navigate('/hotspot');") Hotspot
+
+        a(href="javascript:void(0)" class="icon" onclick="myFunction()")
+            i(class="fa fa-bars")
 
 block content
     main.flex-shrink-0
