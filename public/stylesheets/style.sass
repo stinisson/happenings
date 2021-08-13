@@ -41,11 +41,36 @@ h1, h2, h3, h4, h5, h6, p
 #topNav a.active.about, #topNav a.active.statistics
   background-color: #EEAECA
 
+/* Hide the link that should open and close the topnav on small screens */
 #topNav .icon
   display: none
 
 #topNav a.navbarLeft
   float: left
+
+//
+@media screen and (max-width: 600px)
+  #topNav a:not(:first-child)
+    display: none
+  .topNav a.icon
+    float: right
+    display: block
+
+@media screen and (max-width: 600px)
+  topNav.responsive
+    position: relative
+
+  #topNav.responsive a.icon
+    position: absolute
+    right: 0
+    top: 0
+
+  #topNav.responsive a
+    float: none
+    display: block
+    text-align: left
+//
+
 
 // Leaflet map
 #map
