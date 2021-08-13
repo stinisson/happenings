@@ -20,9 +20,8 @@ router.get('/summary', function(req, res, next) {
         else {
             const db = client.db('happenings');
             const events = db.collection('events');
-            // currentDate
-            //2021-08-01
-            events.find({datetime: {$gte: '2021-08-03'}}).project({}).toArray( (err, docs) => {
+            // filter on today's date
+            events.find({datetime: {$gte: currentDate}}).project({}).toArray( (err, docs) => {
                 if (err) throw err;
 
                 else { console.log(docs);
