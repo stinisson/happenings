@@ -2,17 +2,17 @@ extends layout
 
 block scripts
     // About page script
-    script(src="/javascripts/about_page.js")
+    script(src="/javascripts/about_page.js" type="module")
 
     block navBar
         #topNav
-            a(href="/" class="navbarLeft") Nyheter och händelser
-            a(class="active about" href="/about") Om
-            a(href="/statistics") Kriminalstatistik
-            a(href="/police-stations") Polisstationer
-            a(href="/hotspot") Hotspot
-            a(href="/weekly-summary") Senaste veckan
-            a(href="/daily-summary") Senaste dygnet
+            a(class="navbarLeft" href="#" onclick="document.navigate('/');") Nyheter och händelser
+            a(class="active about" href="#" onclick="document.navigate('/about');") Om
+            a(href="#" onclick="document.navigate('/statistics');") Kriminalstatistik
+            a(href="#" onclick="document.navigate('/police-stations');") Polisstationer
+            a(href="#" onclick="document.navigate('/hotspot');") Hotspot
+            a(href="#" onclick="document.navigate('/weekly-summary');") Senaste veckan
+            a(href="#" onclick="document.navigate('/daily-summary');") Senaste dygnet
             a(href="javascript:void(0)" class="icon" onclick="myFunction()")
                 i(class="fa fa-bars")
 
@@ -33,34 +33,33 @@ block content
                     |
                     #panelsStayOpen-collapseOne.accordion-collapse.collapse.show(aria-labelledby='panelsStayOpen-headingOne')
                         .accordion-body
-                            strong This is the first item&apos;s accordion body.
-                            |  It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the
-                            code .accordion-body
-                            | , though the transition does limit overflow.
-                |
+                            strong Statistiken över bekräftade skjutningar och sprängningar
+                            |  är hämtad från &nbsp;
+                            a(href="https://polisen.se/om-polisen/polisens-arbete/sprangningar-och-skjutningar/" target="_blank") Polismyndighetens hemsida
+                            | . De aktuella händelserna och informationen om polistationerna är hämtade från Polisens öppna API .
+
                 .accordion-item
-                    h2#panelsStayOpen-headingTwo.accordion-header
+                    h1#panelsStayOpen-headingTwo.accordion-header
                         button.accordion-button.collapsed(type='button', data-bs-toggle='collapse', data-bs-target='#panelsStayOpen-collapseTwo', aria-expanded='false', aria-controls='panelsStayOpen-collapseTwo')
-                            | Har du förslag på förbättringar?
+                            | Jag var med om ett brott i närtid, varför finns inte det med på Nyheter och händelser?
                     |
                     #panelsStayOpen-collapseTwo.accordion-collapse.collapse(aria-labelledby='panelsStayOpen-headingTwo')
                         .accordion-body
-                            strong This is the second item&apos;s accordion body.
-                            |  It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the
-                            code .accordion-body
-                            | , though the transition does limit overflow.
+                            strong Datan som visas på kartan är begränsad till de 500 händelsenotiser
+                            |  som tillhandahålles via Polisens öppna API. Alla händelser rapporteras inte in utan
+                            |  datamängden representerar endast ett urval av polisens utryckningar. Ibland läggs
+                            |  en händelse in i en sammanfattning istället för att läggas in under en egen rubrik,
+                            |  det kan därför vara värt att läsa igenom sammanfattningarna.
                 |
                 .accordion-item
                     h2#panelsStayOpen-headingThree.accordion-header
                         button.accordion-button.collapsed(type='button', data-bs-toggle='collapse', data-bs-target='#panelsStayOpen-collapseThree', aria-expanded='false', aria-controls='panelsStayOpen-collapseThree')
-                            | Vad innebär "hotspot"?
+                            | Jag har förslag på förbättringar, vart vänder jag mig?
                     |
                     #panelsStayOpen-collapseThree.accordion-collapse.collapse(aria-labelledby='panelsStayOpen-headingThree')
                         .accordion-body
-                            strong Hotspot heatmap.
-                            |  It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go within the
-                            code .accordion-body
-                            | , though the transition does limit overflow.
+                            strong All feedback uppskattas!
+                            |  Skicka ett mail till [....]@protonmail.com.
 
             .social-container
                 ul.social-icons

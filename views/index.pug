@@ -19,15 +19,25 @@ block scripts
   // Leaflet easy-button
   script(src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js", crossorigin="anonymous")
 
+  script.
+      function myFunction() {
+        const x = document.getElementById("#topNav");
+        if (x.className === "topNav") {
+          x.className += " responsive";
+        } else {
+          x.className = "topNav";
+        }
+      }
+
   block navBar
     #topNav
-      a(class="active" href="/" class="navbarLeft") Nyheter och händelser
-      a(href="/about") Om
-      a(href="/statistics") Kriminalstatistik
-      a(href="/police-stations") Polisstationer
-      a(href="/hotspot") Hotspot
-      a(href="/weekly-summary") Senaste veckan
-      a(href="/daily-summary") Senaste dygnet
+      a(class="active navbarLeft" href="/") Nyheter och händelser
+      a(href="#" onclick="document.navigate('/about');") Om
+      a(href="#" onclick="document.navigate('/statistics');") Kriminalstatistik
+      a(href="#" onclick="document.navigate('/police-stations');") Polisstationer
+      a(href="#" onclick="document.navigate('/hotspot');") Hotspot
+      a(href="#" onclick="document.navigate('/weekly-summary');") Senaste veckan
+      a(href="#" onclick="document.navigate('/daily-summary');") Senaste dygnet
       a(href="javascript:void(0)" class="icon" onclick="myFunction()")
         i(class="fa fa-bars")
 
