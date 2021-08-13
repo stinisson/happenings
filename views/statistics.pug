@@ -9,13 +9,13 @@ block scripts
 
     block navBar
         #topNav
-            a(href="/" class="navbarLeft") Nyheter och händelser
-            a(href="/about") Om
-            a(class="active statistics" href="/statistics") Kriminalstatistik
-            a(href="/police-stations") Polisstationer
-            a(href="/hotspot") Hotspot
-            a(href="/weekly-summary") Senaste veckan
-            a(href="/daily-summary") Senaste dygnet
+            a(class="navbarLeft" href="#" onclick="document.navigate('/');") Nyheter och händelser
+            a(href="#" onclick="document.navigate('/about');") Om
+            a(class="active statistics" href="#" onclick="document.navigate('/statistics');") Kriminalstatistik
+            a(href="#" onclick="document.navigate('/police-stations');") Polisstationer
+            a(href="#" onclick="document.navigate('/hotspot');") Hotspot
+            a(href="#" onclick="document.navigate('/weekly-summary');") Senaste veckan
+            a(href="#" onclick="document.navigate('/daily-summary');") Senaste dygnet
             a(href="javascript:void(0)" class="icon" onclick="myFunction()")
                 i(class="fa fa-bars")
 
@@ -26,7 +26,8 @@ block content
             .container.container-statistics
                 h1.pt-5 Kriminalstatistik
 
-                p.lead Kriminalstatistik över skjutningar och sprängningar i Sverige.
+                p.lead Kriminalstatistik över skjutningar och sprängningar i Sverige 2017-2021.
+
 
                 .card.text-center
                     .card-header
@@ -41,38 +42,93 @@ block content
                             #nav-shootings.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='nav-shootings-tab')
 
                                 h3.pt-3 2021
-                                h5 I år:
+                                h5
                                     strong  180
-                                    |  st skjutningar
+                                    |  skjutningar -
+                                    strong  25
+                                    |  avlidna -
+                                    strong  53
+                                    |  skadade
                                 canvas#shootings_2021
 
                                 h3.pt-5 2020
-                                h5 Totalt:
+                                h5
                                     strong  366
-                                    |  st skjutningar
+                                    |  skjutningar -
+                                    strong  47
+                                    |  avlidna -
+                                    strong  117
+                                    |  skadade
                                 canvas#shootings_2020
 
                                 h3.pt-5 2019
-                                h5 Totalt:
+                                h5
                                     strong  334
-                                    |  st skjutningar
+                                    |  skjutningar -
+                                    strong  42
+                                    |  avlidna -
+                                    strong  120
+                                    |  skadade
                                 canvas.pb-5#shootings_2019
+
+                                h3.pt-5 2018
+                                    h5
+                                        strong  306
+                                        |  skjutningar -
+                                        strong  45
+                                        |  avlidna -
+                                        strong  135
+                                        |  skadade
+                                    canvas.pb-5#shootings_2018
+
+                                h3.pt-5 2017
+                                    h5
+                                        strong  324
+                                        |  skjutningar -
+                                        strong  43
+                                        |  avlidna -
+                                        strong  139
+                                        |  skadade
+                                    canvas.pb-5#shootings_2017
+
 
                             #nav-explosions.tab-pane.fade(role='tabpanel', aria-labelledby='nav-explosions-tab')
                                 h3.pt-3 2021
-                                h5 I år:
-                                    strong
-                                    |  51 st sprängningar
+                                h5
+                                    strong  51
+                                    |  detonationer -
+                                    strong  7
+                                    |  försök -
+                                    strong  39
+                                    |  förberedelser
                                 canvas#explosions_2021
 
                                 h3.pt-5 2020
-                                h5 Totalt:
-                                    strong
-                                    |  107 st sprängningar
+                                h5
+                                    strong  107
+                                    |  detonationer -
+                                    strong  13
+                                    |  försök -
+                                    strong  89
+                                    |  förberedelser
                                 canvas#explosions_2020
 
                                 h3.pt-5 2019
-                                h5 Totalt:
-                                    strong
-                                    |  133 st sprängningar
+                                h5
+                                    strong  133
+                                    |  detonationer -
+                                    strong  27
+                                    |  försök -
+                                    strong  82
+                                    |  förberedelser
                                 canvas.pb-5#explosions_2019
+
+                                h3.pt-5 2018
+                                h5
+                                    strong  90
+                                    |  detonationer -
+                                    strong  12
+                                    |  försök -
+                                    strong  52
+                                    |  förberedelser
+                                canvas.pb-5#explosions_2018
