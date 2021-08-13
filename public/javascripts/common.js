@@ -85,7 +85,7 @@ function createMap(layers) {
     return mymap;
 }
 
-export function getEventData(endpoint, iconColour) {
+export function getEventData(endpoint, iconColour, timeInterval) {
 
     let eventIcon;
     if (iconColour === "red") {
@@ -104,13 +104,25 @@ export function getEventData(endpoint, iconColour) {
             events.forEach((event, idx) => {
 
                 let coords = `${event.location.gps}`.split(",");
-                let newEvent = L.marker([coords[0], coords[1]], {icon: eventIcon}).bindPopup(
-                    "<b>" + `${event.type}` + "</b>" + "<br>" +
-                    `${event.name}` + "<br><br>" +
-                    `${event.summary}` + "<br> <br>" +
-                    `Koordinater: ${event.location.gps}` + "<br>" +
-                    "Läs mer: <a href=https://www.polisen.se" + `${event.url}` + " target='_blank' "+  ">Polisen - aktuellt</a>"
-                );
+
+                let newEvent;
+                if (event.summary.length === 110) {
+                    newEvent = L.marker([coords[0], coords[1]], {icon: eventIcon}).bindPopup(
+                      "<b>" + `${event.type}` + "</b>" + "<br>" +
+                      `${event.name}` + "<br><br>" +
+                      `${event.summary}` + "..." + "<br> <br>" +
+                      `Koordinater: ${event.location.gps}` + "<br>" +
+                      "Läs mer: <a href=https://www.polisen.se" + `${event.url}` + " target='_blank' "+  ">Polisen - aktuellt</a>"
+                    );
+                } else {
+                    newEvent = L.marker([coords[0], coords[1]], {icon: eventIcon}).bindPopup(
+                      "<b>" + `${event.type}` + "</b>" + "<br>" +
+                      `${event.name}` + "<br><br>" +
+                      `${event.summary}` + "<br> <br>" +
+                      `Koordinater: ${event.location.gps}` + "<br>" +
+                      "Läs mer: <a href=https://www.polisen.se" + `${event.url}` + " target='_blank' "+  ">Polisen - aktuellt</a>"
+                    );
+                }
 
                 if (!eventLayers.hasOwnProperty(`${event.type}`)) {
                     const newLayerGroup = L.layerGroup();
@@ -124,7 +136,17 @@ export function getEventData(endpoint, iconColour) {
             const mymap = createMap(eventControlLayers);
 
             L.control.layers(null, eventLayers, {collapsed:false, sortLayers:true}).addTo(mymap);
-            $(".leaflet-control-layers-overlays").parent().prepend('<div class="control-title"><b>Händelser</b></div>');
+
+            let title = "";
+            if (timeInterval === "last7") {
+                title = "Händelser senaste veckan";
+            } else if (timeInterval === "last24") {
+                title = "Händelser senaste dygnet"
+            } else {
+                title = "Händelser";
+            }
+
+            $(".leaflet-control-layers-overlays").parent().prepend('<div class="control-title"><b>' + `${title}` + '</b></div>');
 
             $(".leaflet-control-layers-overlays").prepend('<span><div><input type="checkbox" id="control-events" checked=""><span> Alla händelser</span></div></span>');
 
