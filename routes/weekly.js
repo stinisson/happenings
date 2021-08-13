@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongodb = require('mongodb');
 const moment = require('moment');
+const common = require('../utils/common');
 
 
 // Setup MongoDB
@@ -9,7 +10,11 @@ const MongoClient = mongodb.MongoClient;
 const dbURL = "mongodb://localhost";
 
 router.get('/', function(req, res, next) {
-  res.render('weekly', { title: 'Senaste veckan' });
+  res.render('weekly', { title: 'Senaste veckan', navigatePayload: common.getNavigatePayload(req) });
+});
+
+router.post('/', function(req, res, next) {
+  res.render('weekly', { title: 'Senaste veckan', navigatePayload: common.getNavigatePayload(req) });
 });
 
 router.get('/summary', function(req, res, next) {

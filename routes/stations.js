@@ -3,6 +3,7 @@ const router = express.Router();
 const got = require('got');
 const mongodb = require('mongodb');
 const CronJob = require('cron').CronJob;
+const common = require('../utils/common');
 
 // Load stations once per day
 // cronTime, onTick, onComplete, start, timezone, context, runOnInit
@@ -36,7 +37,11 @@ function saveStations() {
 }
 
 router.get('/', function(req, res) {
-    res.render('stations', { title: 'Stations' });
+    res.render('stations', { title: 'Stations', navigatePayload: common.getNavigatePayload(req) });
+});
+
+router.post('/', function(req, res, next) {
+    res.render('stations', { title: 'Stations', navigatePayload: common.getNavigatePayload(req) });
 });
 
 router.get('/data', function(req, res, next) {

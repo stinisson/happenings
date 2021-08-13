@@ -2,14 +2,20 @@ const express = require('express');
 const router = express.Router();
 const got = require('got');
 const mongodb = require('mongodb');
+const common = require('../utils/common');
 
 // Setup MongoDB
 const MongoClient = mongodb.MongoClient;
 const dbURL = "mongodb://localhost";
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Nyheter och händelser' });
-  saveEvents();
+  res.render('index', { title: 'Nyheter och händelser', navigatePayload: common.getNavigatePayload(req) });
+  //saveEvents();
+});
+
+router.post('/', function(req, res, next) {
+  res.render('index', { title: 'Nyheter och händelser', navigatePayload: common.getNavigatePayload(req) });
+  //saveEvents();
 });
 
 function saveEvents() {
