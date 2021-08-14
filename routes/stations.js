@@ -5,6 +5,9 @@ const mongodb = require('mongodb');
 const CronJob = require('cron').CronJob;
 const common = require('../utils/common');
 
+var { LocalDateTime, ZoneId, ZonedDateTime, DateTimeFormatter } = require('@js-joda/core');
+require('@js-joda/timezone');
+
 
 // Setup MongoDB
 const MongoClient = mongodb.MongoClient;
@@ -16,8 +19,6 @@ function updateOpeningHours() {
         if (err) throw err;
         else {
             const db = client.db('happenings');
-            db.collection("policeStationsOpeningHours").insertOne({'stin': 1});
-
             const openingHours = db.collection('openingHours');
 
             openingHours.find().sort({updated: 1}).project({id: 1}).limit(1).toArray( (err, docs) => {
@@ -55,6 +56,62 @@ function initiateOpeningHours() {
                 }
             });
         }
+    });
+}
+
+function parsePoliceDate(dateString) {
+    if (dateString[12] == ':') {
+        // Sometimes the hour is missing a leading zero, insert it
+        dateString = dateString.substr(0, 11) + "0" + dateString.substr(11, 7)
+    } else {
+        dateString = dateString.substr(0, 19);
+    }
+    dateString = dateString.replace(' ', 'T')
+
+    let zdt = ZonedDateTime.of(
+      LocalDateTime.parse(dateString),
+      ZoneId.of("Europe/Stockholm")
+    );
+
+    dateString = zdt.format(DateTimeFormatter.ofPattern('yyyy-MM-dd')) + "T"
+    dateString += zdt.format(DateTimeFormatter.ofPattern('HH:mm:ss'))
+    dateString += zdt.format(DateTimeFormatter.ofPattern('Z'))
+
+    return new Date(dateString)
+}
+
+function getOpenStationIds(db) {
+    return new Promise(function (resolve, reject) {
+        const openingHours = db.collection('openingHours');
+        const openStationIds = [];
+        const currentDate = new Date();
+        openingHours.find().toArray((err, docs) => {
+            if (err) {
+                reject(err);
+            }
+            else {
+                docs.forEach(station => {
+                    let isOpen = false;
+                    if (station.info.id === undefined) {
+                        return;
+                    }
+                    station.info.services.forEach(service => {
+                        if (service.name == 'Anmälan') {
+                            service.openingHours.forEach(day => {
+                                if (day.name == 'Idag' && day.isClosed == false) {
+                                    const openFrom = parsePoliceDate(day.from);
+                                    const openTo = parsePoliceDate(day.to);
+                                    if (currentDate >= openFrom && currentDate <= openTo) {
+                                        openStationIds.push(station.id)
+                                    }
+                                }
+                            })
+                        }
+                    })
+                });
+                resolve(openStationIds);
+            }
+        });
     });
 }
 
@@ -113,16 +170,19 @@ router.get('/open', function(req, res, next) {
         if (err) throw err;
         else {
             const db = client.db('happenings');
-            const policeStations = db.collection('policeStations');
 
-            policeStations.find({}).project({id: 1, name: 1, Url: 1, location: 1, services: 1}).toArray( (err, docs) => {
-                if (err) throw err;
-                else {
-                    res.send(docs);
-                }
-                client.close();
+            getOpenStationIds(db).then(function(openStationIds) {
+                const policeStations = db.collection('policeStations');
+                policeStations.find({"id": { $in : openStationIds }}).project({id: 1, name: 1, Url: 1, location: 1, services: 1}).toArray( (err, docs) => {
+                    if (err) throw err;
+                    else {
+                        res.send(docs);
+                    }
+                });
+
+            }, function(err) {
+                throw err;
             });
-
         }
     });
 });

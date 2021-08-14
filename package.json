@@ -6,6 +6,8 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@js-joda/core": "^3.2.0",
+    "@js-joda/timezone": "^2.5.0",
     "cookie-parser": "~1.4.4",
     "cron": "^1.8.2",
     "debug": "~2.6.9",
