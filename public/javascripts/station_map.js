@@ -86,7 +86,6 @@ $(document).ready(() => {
     $.getJSON(endpoint, {})
         .done((events) => {
 
-
             let stations = [];
 
             const mymap = createMap();
@@ -111,6 +110,8 @@ $(document).ready(() => {
 
                 stations.push( {marker: newEvent, open: true, services: ["Pass"]} );
 
+                //  "Öppettider: <a href=https://polisen.se/api/policestations/" + `${stations[idx].id}`+ " target='_blank'>Öppettider</a>" + "<br>" +
+
 
 
             });
@@ -118,6 +119,9 @@ $(document).ready(() => {
 
             var cities = L.layerGroup([]);
             cities.addTo(mymap);
+            //$(".leaflet-control-layers-overlays").parent().prepend('<div class="control-title"><b>' + `${title}` + '</b></div>');
+
+            //$(".leaflet-control-layers-overlays").prepend('<span><div><input type="checkbox" id="control-events" checked=""><span> Alla händelser</span></div></span>');
 
 
 

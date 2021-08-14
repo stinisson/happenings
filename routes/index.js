@@ -8,19 +8,21 @@ const common = require('../utils/common');
 const MongoClient = mongodb.MongoClient;
 const dbURL = "mongodb://localhost";
 
+/*// Load stations once per day
+// cronTime, onTick, onComplete, start, timezone, context, runOnInit
+const job = new CronJob('0 0 0 * * *', saveStations, null, null, null, null, true);
+job.start();*/
+
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Nyheter och händelser', navigatePayload: common.getNavigatePayload(req) });
-  //saveEvents();
 });
 
 router.post('/', function(req, res, next) {
   res.render('index', { title: 'Nyheter och händelser', navigatePayload: common.getNavigatePayload(req) });
-  //saveEvents();
 });
 
 function saveEvents() {
   got('https://polisen.se/api/events', {responseType: 'json'}).then(response => {
-
     MongoClient.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
       if (err) throw err;
       else {
@@ -53,7 +55,6 @@ router.get('/data', function(req, res, next) {
         }
         client.close();
       });
-
     }
   });
 });
