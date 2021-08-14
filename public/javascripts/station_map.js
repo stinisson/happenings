@@ -1,5 +1,147 @@
-import {getEventData} from "./map_common.js";
 
+// Leaflet map
+function createMap(layers) {
+    console.log(document.navigatePayload.centerLat, document.navigatePayload.centerLng)
+
+    const mymap = L.map('map', {
+        center: [document.navigatePayload.centerLat, document.navigatePayload.centerLng],
+        zoom: document.navigatePayload.zoom,
+        minZoom: 5,
+        layers: layers
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(mymap);
+
+    // Locate me icon
+    const locateMeIcon = new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    // Locate me-button
+    L.easyButton({
+        states:[
+            {
+                stateName: 'unloaded',
+                icon: 'fa-location-arrow',
+                title: 'Visa din plats',
+                onClick: function(control){
+                    control.state("loading");
+                    control._map.on('locationfound', function(e){
+                        L.marker(e.latlng, {icon: locateMeIcon}).addTo(control._map).bindPopup("<b>Du är här!</b><br>").openPopup();
+                        this.setView(e.latlng, 13);
+                        control.state('loaded');
+                    });
+                    control._map.on('locationerror', function(){
+                        control.state('error');
+                    });
+                    control._map.locate()
+                }
+            }, {
+                stateName: 'loading',
+                icon: 'fa-spinner fa-spin'
+            }, {
+                stateName: 'loaded',
+                icon: 'fa-thumbs-up'
+            }, {
+                stateName: 'error',
+                icon: 'fa-frown-o',
+                title: 'Platsen hittades inte'
+            }
+        ]
+    }).addTo(mymap);
+
+    return mymap;
+}
+
+
+const eventIconBlue = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
+
+function getStationMarkers(endpoint) {
+    return new Promise(function (resolve, reject) {
+        $.getJSON(endpoint, {})
+          .done((stations) => {
+              let allStations = [];
+              stations.forEach((station, idx) => {
+
+                  let coords = `${station.location.gps}`.split(",");
+                  let services = "<ul class='stationService'>";
+
+                  stations[idx].services.forEach(function (service, i) {
+                      services += '<li>' + service.name + '</li>';
+                  });
+                  services += "</ul>";
+
+                  let newStation = L.marker([coords[0], coords[1]], {icon: eventIconBlue}).bindPopup(
+                    `Polisstation: ${station.name}` + "<br>" +
+                    `Adress: ${station.location.name}` + "<br>" +
+                    `GPS: ${station.location.gps}` + "<br>" +
+                    "Tjänster: " + services +
+                    "Öppettider och tjänster: <a href=" + `${station.Url}` + " target='_blank'>Polisen - kontakt</a>"
+                  );
+
+                  allStations.push(newStation);
+              });
+
+              const stationsLayerGroup = L.layerGroup(allStations);
+              resolve(stationsLayerGroup);
+
+          })
+          .fail((xhr) => {
+              console.log(xhr);
+              reject();
+          });
+    });
+}
+
+
+Promise.all([getStationMarkers("/police-stations/all"), getStationMarkers("/police-stations/open")])
+  .then(function(stationsLayerGroups) {
+     const allStations = stationsLayerGroups[0];
+     const openStations = stationsLayerGroups[1];
+
+      var overlayStations = {
+          'Alla stationer': allStations,
+          'Öppna stationers': openStations
+      };
+
+      const mymap = createMap(allStations);
+      document.mymap = mymap;
+
+      L.control.layers(overlayStations, null, {collapsed:false, sortLayers:true}).addTo(mymap);
+
+  }).catch(error => {
+    alert('Problem contacting server');
+    console.log(error);
+    const mymap = createMap([]);
+  });
+
+
+/*
+
+
+
+
+
+
+*/
+
+
+/*
 // Leaflet map
 function createMap() {
     const mymap = L.map('map', {
@@ -71,7 +213,7 @@ $(document).ready(() => {
     });
 
     var overlayMaps = ['Anmälan', 'Pass'];
-/*        'Anmälan': cities,
+/!*        'Anmälan': cities,
         'Pass ': cities,
         'Tillstånd ': cities,
         'Hittegods ': cities,
@@ -79,7 +221,7 @@ $(document).ready(() => {
         'Delgivning ': cities,
         'Cyklar  ': cities,
         'Provisoriskt pass': cities,
-        'Beslag ': cities*/
+        'Beslag ': cities*!/
 
 
     const endpoint = "/police-stations/data";
@@ -133,7 +275,7 @@ $(document).ready(() => {
         });
 
 
-});
+});*/
 
 
 

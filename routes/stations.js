@@ -89,7 +89,26 @@ router.post('/', function(req, res, next) {
     res.render('stations', { title: 'Stations', navigatePayload: common.getNavigatePayload(req) });
 });
 
-router.get('/data', function(req, res, next) {
+router.get('/all', function(req, res, next) {
+    MongoClient.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
+        if (err) throw err;
+        else {
+            const db = client.db('happenings');
+            const policeStations = db.collection('policeStations');
+
+            policeStations.find({}).project({id: 1, name: 1, Url: 1, location: 1, services: 1}).toArray( (err, docs) => {
+                if (err) throw err;
+                else {
+                    res.send(docs);
+                }
+                client.close();
+            });
+
+        }
+    });
+});
+
+router.get('/open', function(req, res, next) {
     MongoClient.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
         if (err) throw err;
         else {
