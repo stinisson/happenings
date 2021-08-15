@@ -104,7 +104,7 @@ function getOpenStationIds(db) {
                     let isOpen = false;
                     if (station.info.id === undefined) {
                         return;
-                    } 
+                    }
                     station.info.services.forEach(service => {
                         if (service.name == 'Anmälan') {
                             service.openingHours.forEach(day => {
@@ -135,7 +135,7 @@ const saveStations = new Promise(function(resolve, reject) {
                 db.collection("policeStations").deleteMany({}).then(r =>
                   db.collection("policeStations").insertMany(response.body, function(err, res) {
                       if (err) throw err;
-                      console.log("1 document inserted (stations)");
+                      console.log("Updated police stations");
                       resolve();
                   })
                 );
