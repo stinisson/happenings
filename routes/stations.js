@@ -40,6 +40,14 @@ function updateOpeningHours() {
 }
 
 function initiateOpeningHours() {
+
+    saveStations.then(function(result) {
+
+    }, function(err) {
+        console.log(err);
+        throw err;
+    });
+
     MongoClient.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
         if (err) throw err;
         else {
@@ -96,11 +104,11 @@ function getOpenStationIds(db) {
                     let isOpen = false;
                     if (station.info.id === undefined) {
                         return;
-                    }
+                    } 
                     station.info.services.forEach(service => {
                         if (service.name == 'Anmälan') {
                             service.openingHours.forEach(day => {
-                                if (day.name == 'Idag' && day.isClosed == false) {
+                                if (day.isClosed == false) {
                                     const openFrom = parsePoliceDate(day.from);
                                     const openTo = parsePoliceDate(day.to);
                                     if (currentDate >= openFrom && currentDate <= openTo) {
@@ -117,7 +125,7 @@ function getOpenStationIds(db) {
     });
 }
 
-function saveStations() {
+const saveStations = new Promise(function(resolve, reject) {
     got('https://polisen.se/api/policestations', {responseType: 'json'}).then(response => {
 
         MongoClient.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
@@ -125,18 +133,19 @@ function saveStations() {
             else {
                 const db = client.db('happenings');
                 db.collection("policeStations").deleteMany({}).then(r =>
-                    db.collection("policeStations").insertMany(response.body, function(err, res) {
-                        if (err) throw err;
-                        console.log("1 document inserted (stations)");
-                        client.close();
-                    })
+                  db.collection("policeStations").insertMany(response.body, function(err, res) {
+                      if (err) throw err;
+                      console.log("1 document inserted (stations)");
+                      resolve();
+                  })
                 );
             }
         })
     }).catch(error => {
+        reject(error);
         console.log(error);
     });
-}
+});
 
 router.get('/', function(req, res) {
     res.render('stations', { title: 'Stations', navigatePayload: common.getNavigatePayload(req) });
