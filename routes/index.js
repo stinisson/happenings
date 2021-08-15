@@ -3,15 +3,11 @@ const router = express.Router();
 const got = require('got');
 const mongodb = require('mongodb');
 const common = require('../utils/common');
+const CronJob = require('cron').CronJob;
 
 // Setup MongoDB
 const MongoClient = mongodb.MongoClient;
 const dbURL = "mongodb://localhost";
-
-/*// Load stations once per day
-// cronTime, onTick, onComplete, start, timezone, context, runOnInit
-const job = new CronJob('0 0 0 * * *', saveStations, null, null, null, null, true);
-job.start();*/
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Nyheter och händelser', navigatePayload: common.getNavigatePayload(req) });
@@ -30,7 +26,7 @@ function saveEvents() {
         db.collection("events").deleteMany({}).then(r =>
             db.collection("events").insertMany(response.body, function(err, res) {
               if (err) throw err;
-              console.log("1 document inserted");
+              console.log("Events updated");
               client.close();
             })
         );
@@ -60,3 +56,9 @@ router.get('/data', function(req, res, next) {
 });
 
 module.exports = router;
+
+
+// Load events once every five minutes
+// cronTime, onTick, onComplete, start, timezone, context, runOnInit
+const job = new CronJob('0 */5 * * * *', saveEvents, null, null, null, null, true);
+job.start();
