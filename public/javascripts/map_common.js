@@ -118,8 +118,10 @@ export function getEventData(endpoint, iconColour, timeInterval) {
             let eventControlLayers = [];
             for (const eventGroupKey in eventGroups) {
                 const eventGroup = eventGroups[eventGroupKey];
+                let eventGroupTypes = new Set();
                 let popupHtml = "";
                 eventGroup.forEach((event, eventIdx) => {
+                    eventGroupTypes.add(event.type);
                     popupHtml += `<b>${event.type}</b><br>${event.name}`;
                     popupHtml += `<br><br>${event.summary}`;
 
@@ -136,39 +138,17 @@ export function getEventData(endpoint, iconColour, timeInterval) {
                 let coords = gpsString.split(",");
                 popupHtml += `Koordinater: ${gpsString}`;
 
-                const newEvent = L.marker([coords[0], coords[1]], {icon: eventIcon}).bindPopup(popupHtml, {amaxHeight: 400});
-//maxHeight: 400, minWidth: 300, className:"mylittlename"
-                if (!eventLayers.hasOwnProperty(`${event.type}`)) {
-                    const newLayerGroup = L.layerGroup();
-                    eventLayers[`${event.type}`] = newLayerGroup;
-                    eventControlLayers.push(newLayerGroup);
+                for (let groupType of eventGroupTypes) {
+                    const newEvent = L.marker([coords[0], coords[1]], {icon: eventIcon}).bindPopup(popupHtml);
+
+                    if (!eventLayers.hasOwnProperty(`${groupType}`)) {
+                        const newLayerGroup = L.layerGroup();
+                        eventLayers[`${groupType}`] = newLayerGroup;
+                        eventControlLayers.push(newLayerGroup);
+                    }
+
+                    eventLayers[`${groupType}`].addLayer(newEvent);
                 }
-                eventLayers[`${event.type}`].addLayer(newEvent);
-
-
-                /*
-
-                let newEvent;
-                if (event.summary.length === 110) {
-                    newEvent = L.marker([coords[0], coords[1]], {icon: eventIcon}).bindPopup(
-                      "<b>" + `${event.type}` + "</b>" + "<br>" +
-                      `${event.name}` + "<br><br>" +
-                      `${event.summary}` + "..." + "<br> <br>" +
-                      `Koordinater: ${event.location.gps}` + "<br>" +
-                      "Läs mer: <a href=https://www.polisen.se" + `${event.url}` + " target='_blank' "+  ">Polisen - aktuellt</a>"
-                    );
-                } else {
-                    newEvent = L.marker([coords[0], coords[1]], {icon: eventIcon}).bindPopup(
-                      "<b>" + `${event.type}` + "</b>" + "<br>" +
-                      `${event.name}` + "<br><br>" +
-                      `${event.summary}` + "<br> <br>" +
-                      `Koordinater: ${event.location.gps}` + "<br>" +
-                      "Läs mer: <a href=https://www.polisen.se" + `${event.url}` + " target='_blank' "+  ">Polisen - aktuellt</a>"
-                    );
-                }
-                */
-
-
             }
 
             const mymap = createMap(eventControlLayers);
