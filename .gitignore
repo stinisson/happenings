@@ -1,6 +1,5 @@
 .idea
 package-lock.json
-*.png
 
 # Logs
 logs
