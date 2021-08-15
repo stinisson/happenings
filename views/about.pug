@@ -4,6 +4,8 @@ block scripts
     // About page script
     script(src="/javascripts/about_page.js" type="module")
 
+
+block content
     #Topnav.topnav
         a(class="navbarLeft" href="#" onclick="document.navigate('/');") Nyheter och händelser
         a(href="#" onclick="document.navigate('/daily-summary');") Senaste dygnet
@@ -16,7 +18,6 @@ block scripts
         a(href="javascript:void(0)" class="icon" onclick="myFunction()")
             i.fa.fa-bars
 
-block content
     #background-about
         .container.container-about
             h1.pt-5 Last Night in Sweden

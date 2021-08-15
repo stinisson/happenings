@@ -19,6 +19,7 @@ block scripts
     // Leaflet easy-button
     script(src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js", crossorigin="anonymous")
 
+block content
     #Topnav.topnav
         a(class="navbarLeft" href="#" onclick="document.navigate('/');") Nyheter och händelser
         a(href="#" onclick="document.navigate('/daily-summary');") Senaste dygnet
@@ -29,6 +30,4 @@ block scripts
         // a(href="#" onclick="document.navigate('/hotspot');") Hotspot
         a(href="javascript:void(0)" class="icon" onclick="myFunction()")
             i(class="fa fa-bars")
-
-block content
     #map.custom-popup
