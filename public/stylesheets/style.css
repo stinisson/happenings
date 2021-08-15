@@ -250,6 +250,14 @@ button.accordion-button:hover {
 .custom-popup .leaflet-popup-content-wrapper {
   font-size: 15px; }
 
+.leaflet-popup-content {
+  overflow-x: hidden;
+  max-height: 60vh !important; }
+
+.leaflet-popup-scrolled {
+  border: 0px !important;
+  height: 60vh !important; }
+
 @media screen and (max-width: 600px) {
   .leaflet-control-layers-overlays {
     display: none; } }
