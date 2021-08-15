@@ -19,9 +19,15 @@ block scripts
 block content
     #background-about
         .container.container-about
-            h1.pt-5 Nyheter och händelser i Sverige
+            h1.pt-5 Last Night in Sweden
 
-            p.lead Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+            p.lead
+              | Last Night in Sweden ska ge en överblick över aktuella polisiära händelser
+              | i Sverige och ge en inblick i polisens utryckningsverksamhet.
+            p.lead
+              | Kartan med polisstationer ger en visuell överblick över stationernas läge och information om vilka
+              | tjänster respektive station tillhandahåller. Det går att filtrera på öppettider och visa de stationer
+              | som är öppna just nu.
 
             #accordionPanelsStayOpenExample.accordion
                 .accordion-item
@@ -36,7 +42,8 @@ block content
                             strong Statistiken &ouml;ver bekr&auml;ftade skjutningar och spr&auml;ngningar
                             |  &auml;r h&auml;mtad fr&aring;n&#32;
                             a.accordion(href='https://polisen.se/om-polisen/polisens-arbete/sprangningar-och-skjutningar/', target='_blank') Polismyndighetens hemsida
-                            | . De aktuella h&auml;ndelserna och informationen om polistationerna &auml;r h&auml;mtade fr&aring;n Polisens &ouml;ppna API.
+                            | . De aktuella h&auml;ndelserna och informationen om polistationerna &auml;r h&auml;mtade
+                            | fr&aring;n Polisens &ouml;ppna API.
 
                 .accordion-item
                     h1#panelsStayOpen-headingTwo.accordion-header
@@ -46,10 +53,10 @@ block content
                     #panelsStayOpen-collapseTwo.accordion-collapse.collapse(aria-labelledby='panelsStayOpen-headingTwo')
                         .accordion-body
                             strong Datan som visas på kartan är begränsad till de 500 händelsenotiser
-                            |  som tillhandahålles via Polisens öppna API. Alla händelser rapporteras inte in utan
+                            |  som tillhandahålls via Polisens öppna API. Alla händelser rapporteras inte in utan
                             |  datamängden representerar endast ett urval av polisens utryckningar. Ibland läggs
                             |  en händelse in i en sammanfattning istället för att läggas in under en egen rubrik,
-                            |  det kan därför vara värt att läsa igenom sammanfattningarna.
+                            |  det kan därför vara intressant att även läsa igenom sammanfattningarna.
                 |
                 .accordion-item
                     h2#panelsStayOpen-headingThree.accordion-header
@@ -60,23 +67,23 @@ block content
                         .accordion-body
                             strong All feedback uppskattas!
                             |  Skicka ett mail till what-happened-last-night-in-sweden@protonmail.com.
-
-            .social-container
-                ul.social-icons
-                    li
-                        a(href='#')
-                            i.fa.fa-facebook
-                    |
-                    li
-                        a(href='#')
-                            i.fa.fa-twitter
-                    |
-                    li
-                        a(href='#')
-                            i.fa.fa-linkedin
-                    |
-                    li
-                        a(href='#')
-                            i.fa.fa-envelope
+            //
+            //.social-container
+            //    ul.social-icons
+            //        li
+            //            a(href='#')
+            //                i.fa.fa-facebook
+            //        |
+            //        li
+            //            a(href='#')
+            //                i.fa.fa-twitter
+            //        |
+            //        li
+            //            a(href='#')
+            //                i.fa.fa-linkedin
+            //        |
+            //        li
+            //            a(href='#')
+            //                i.fa.fa-envelope
 
 
