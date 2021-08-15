@@ -6,7 +6,7 @@ function createMap(layers) {
     const mymap = L.map('map', {
         center: [document.navigatePayload.centerLat, document.navigatePayload.centerLng],
         zoom: document.navigatePayload.zoom,
-        minZoom: 5,
+        minZoom: 4,
         layers: layers
     });
 
@@ -116,13 +116,16 @@ Promise.all([getStationMarkers("/police-stations/all"), getStationMarkers("/poli
 
       var overlayStations = {
           'Alla stationer': allStations,
-          'Öppna stationers': openStations
+          'Öppna stationer': openStations
       };
 
       const mymap = createMap(allStations);
       document.mymap = mymap;
 
       L.control.layers(overlayStations, null, {collapsed:false, sortLayers:true}).addTo(mymap);
+
+      $(".leaflet-control-layers-overlays").parent().prepend('<div class="control-title"><b>Polisstationer</b></div>');
+
 
   }).catch(error => {
     alert('Problem contacting server');
