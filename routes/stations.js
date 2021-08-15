@@ -24,13 +24,15 @@ function updateOpeningHours() {
             openingHours.find().sort({updated: 1}).project({id: 1}).limit(1).toArray( (err, docs) => {
                 if (err) throw err;
                 else {
-                    const oldest_id = docs[0].id;
-                    got('https://polisen.se/api/policestations/' + oldest_id, {responseType: 'json'}).then(response => {
-                        openingHours.updateOne({id: oldest_id},{$set: {info: response.body, updated: Date.now()}})
-                        console.log("Updated opening hours for " + response.body.name)
-                    }).catch(error => {
-                        console.log(error);
-                    });
+                    if (docs.length > 0) {
+                        const oldest_id = docs[0].id;
+                        got('https://polisen.se/api/policestations/' + oldest_id, {responseType: 'json'}).then(response => {
+                            openingHours.updateOne({id: oldest_id},{$set: {info: response.body, updated: Date.now()}})
+                            console.log("Updated opening hours for " + response.body.name)
+                        }).catch(error => {
+                            console.log(error);
+                        });
+                    }
                 }
             });
         }
