@@ -32,7 +32,7 @@ function createMap(layers) {
     const mymap = L.map('map', {
         center: [document.navigatePayload.centerLat, document.navigatePayload.centerLng],
         zoom: document.navigatePayload.zoom,
-        minZoom: 5,
+        minZoom: 4,
         layers: layers
     });
 
@@ -100,12 +100,53 @@ export function getEventData(endpoint, iconColour, timeInterval) {
 
     $.getJSON(endpoint, {})
         .done((events) => {
+
+            let eventGroups = {};
+            events.forEach((event, idx) => {
+                const key = event.location.gps;
+                if (!eventGroups.hasOwnProperty(key)) {
+                    eventGroups[key] = [];
+                    console.log("new", key)
+                } else {
+                    console.log("found du", key)
+                }
+                eventGroups[key].push(event)
+            });
+
             let indeterminate = false;
             let eventLayers = {};
             let eventControlLayers = [];
-            events.forEach((event, idx) => {
+            for (const eventGroupKey in eventGroups) {
+                const eventGroup = eventGroups[eventGroupKey];
+                let popupHtml = "";
+                eventGroup.forEach((event, eventIdx) => {
+                    popupHtml += `<b>${event.type}</b><br>${event.name}`;
+                    popupHtml += `<br><br>${event.summary}`;
 
-                let coords = `${event.location.gps}`.split(",");
+                    if (event.summary.length === 110) {
+                        popupHtml += `...`;
+                    }
+
+                    popupHtml += `<br>`;
+                    popupHtml += `<a href=https://www.polisen.se${event.url} target='_blank'>Polisen&nbsp;-&nbsp;aktuellt</a>`;
+                    popupHtml += `<br><br>`;
+                });
+
+                const gpsString = eventGroupKey;
+                let coords = gpsString.split(",");
+                popupHtml += `Koordinater: ${gpsString}`;
+
+                const newEvent = L.marker([coords[0], coords[1]], {icon: eventIcon}).bindPopup(popupHtml, {amaxHeight: 400});
+//maxHeight: 400, minWidth: 300, className:"mylittlename"
+                if (!eventLayers.hasOwnProperty(`${event.type}`)) {
+                    const newLayerGroup = L.layerGroup();
+                    eventLayers[`${event.type}`] = newLayerGroup;
+                    eventControlLayers.push(newLayerGroup);
+                }
+                eventLayers[`${event.type}`].addLayer(newEvent);
+
+
+                /*
 
                 let newEvent;
                 if (event.summary.length === 110) {
@@ -125,15 +166,10 @@ export function getEventData(endpoint, iconColour, timeInterval) {
                       "Läs mer: <a href=https://www.polisen.se" + `${event.url}` + " target='_blank' "+  ">Polisen - aktuellt</a>"
                     );
                 }
+                */
 
-                if (!eventLayers.hasOwnProperty(`${event.type}`)) {
-                    const newLayerGroup = L.layerGroup();
-                    eventLayers[`${event.type}`] = newLayerGroup;
-                    eventControlLayers.push(newLayerGroup);
-                }
-                eventLayers[`${event.type}`].addLayer(newEvent);
 
-            });
+            }
 
             const mymap = createMap(eventControlLayers);
             document.mymap = mymap;
