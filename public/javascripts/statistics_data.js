@@ -1,8 +1,8 @@
 import {chartColors, chartColorsTransparent, labels, options, options_explosions} from "./chart_utils.js";
 
-const data_skjutningar_2021 = [22, 14, 21, 21, 35, 34, 35, 38, 0, 0, 0, 0];
-const data_avlidna_2021 = [2, 3, 1, 3, 9, 3, 4, 10, 0, 0, 0, 0];
-const data_skadade_2021 = [8, 7, 2, 8, 4, 11, 12, 13, 0, 0, 0, 0];
+const data_skjutningar_2021 = [22, 14, 21, 21, 35, 34, 35, 41, 26, 0, 0, 0];
+const data_avlidna_2021 = [2, 3, 1, 3, 9, 3, 4, 10, 3, 0, 0, 0];
+const data_skadade_2021 = [8, 7, 2, 8, 4, 11, 12, 13, 12, 0, 0, 0];
 
 const data_skjutningar_2020 = [33, 21, 36, 23, 29, 33, 33, 42, 39, 34, 22, 21];
 const data_avlidna_2020 = [4, 3, 5, 3, 4, 3, 3, 5, 5, 3, 5, 4];
@@ -21,8 +21,8 @@ const data_avlidna_2017 = [4, 2, 8, 2, 4, 6, 1, 3, 1, 4, 6, 2];
 const data_skadade_2017 = [10, 10, 8, 6, 6, 9, 24, 17, 16, 14, 7, 12];
 
 
-export const data_detonationer_2021 = [9, 5, 9, 8, 11, 6, 3, 5, 0, 0, 0, 0];
-export const data_forberedelse_2021 = [3, 7, 9, 5, 5, 4, 6, 7, 0, 0, 0, 0];
+export const data_detonationer_2021 = [9, 5, 9, 8, 11, 6, 3, 5, 8, 0, 0, 0];
+export const data_forberedelse_2021 = [3, 7, 9, 5, 5, 4, 6, 7, 6, 0, 0, 0];
 export const data_forsok_2021 = [0, 2, 0, 2, 2, 0, 1, 0, 0, 0, 0, 0];
 
 export const data_detonationer_2020 = [12, 8, 12, 13, 7, 8, 7, 11, 6, 11, 7, 5];
